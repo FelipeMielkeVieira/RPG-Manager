@@ -19,6 +19,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
+@AllArgsConstructor
 @RequestMapping("rpg-generator/usuario")
 public class UsuarioController {
     private UsuarioService usuarioService;

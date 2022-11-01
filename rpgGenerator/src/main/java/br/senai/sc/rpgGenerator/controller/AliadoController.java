@@ -1,18 +1,22 @@
 package br.senai.sc.rpgGenerator.controller;
 
-import br.senai.sc.rpgGenerator.dto.PersonagemDTO;
+import br.senai.sc.rpgGenerator.dto.AliadoDTO;
 import br.senai.sc.rpgGenerator.model.entities.Aliado;
-import br.senai.sc.rpgGenerator.model.entities.Personagem;
 import br.senai.sc.rpgGenerator.model.service.AliadoService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.List;
 
+@Controller
+@AllArgsConstructor
+@RequestMapping("rpg-generator/aliado")
 public class AliadoController {
     private AliadoService aliadoService;
 

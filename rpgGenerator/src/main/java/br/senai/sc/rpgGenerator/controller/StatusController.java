@@ -3,6 +3,7 @@ package br.senai.sc.rpgGenerator.controller;
 import br.senai.sc.rpgGenerator.dto.StatusDTO;
 import br.senai.sc.rpgGenerator.model.entities.Status;
 import br.senai.sc.rpgGenerator.model.service.StatusService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
+@AllArgsConstructor
 @RequestMapping("rpg-generator/status")
 public class StatusController {
     private StatusService statusService;
