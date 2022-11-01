@@ -1,5 +1,7 @@
 package br.senai.sc.rpgGenerator.dto;
 
+import br.senai.sc.rpgGenerator.model.entities.Campanha;
+import br.senai.sc.rpgGenerator.model.entities.Usuario;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -20,4 +22,6 @@ public class PersonagemDTO {
     private Integer expAtual;
     private Integer expProximo;
     private Byte imagem;
+    private Usuario usuario;
+    private Campanha campanha;
 }

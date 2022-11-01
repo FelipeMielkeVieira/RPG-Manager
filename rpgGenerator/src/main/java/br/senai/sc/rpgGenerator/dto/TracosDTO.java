@@ -1,5 +1,6 @@
 package br.senai.sc.rpgGenerator.dto;
 
+import br.senai.sc.rpgGenerator.model.entities.Personagem;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -18,4 +19,5 @@ public class TracosDTO {
     private String personalidade;
     private String ideais;
     private String fraquezas;
+    private Personagem personagem;
 }

@@ -1,5 +1,6 @@
 package br.senai.sc.rpgGenerator.dto;
 
+import br.senai.sc.rpgGenerator.model.entities.Personagem;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -21,4 +22,5 @@ public class StatusDTO {
     private Integer iniciativa;
     private Integer deslocamento;
     private Integer percepcao;
+    private Personagem personagem;
 }
