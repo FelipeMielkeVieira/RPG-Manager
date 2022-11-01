@@ -15,7 +15,7 @@ import java.util.Date;
 @ToString
 @EqualsAndHashCode
 public class ExtrasPersonagem {
-    private Integer id;
+    private Long id;
     private String talentos;
     private String idiomas;
     private String historia;
