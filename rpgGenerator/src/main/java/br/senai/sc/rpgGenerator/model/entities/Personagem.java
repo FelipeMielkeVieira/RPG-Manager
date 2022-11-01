@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @EqualsAndHashCode
 public class Personagem {
     private Long id;
-//    private Integer nivel;
+    private Integer nivel;
     private String nome;
     private Integer mana;
     private Integer vida;

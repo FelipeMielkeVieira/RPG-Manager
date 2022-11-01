@@ -9,8 +9,7 @@ import javax.persistence.Table;
 @Setter
 @ToString
 public class PersonagemDTO {
-    private Long id;
-//    private Integer nivel;
+    private Integer nivel;
     private String nome;
     private Integer mana;
     private Integer vida;

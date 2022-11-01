@@ -9,7 +9,6 @@ import javax.persistence.Table;
 @Setter
 @ToString
 public class UsuarioDTO {
-    private String email;
     private String nome;
     private String senha;
     private Byte imagem;
