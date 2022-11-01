@@ -7,17 +7,15 @@ import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
-@Table(name = "equipamento")
+@Table(name = "organizacao")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @ToString
 @EqualsAndHashCode
-public class Equipamento {
+public class Organizacao {
     private Long id;
     private String nome;
-    private Integer bonus;
-    private Integer tipo;
     private Personagem personagem;
 }
