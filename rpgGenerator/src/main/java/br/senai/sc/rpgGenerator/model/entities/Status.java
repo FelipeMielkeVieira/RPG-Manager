@@ -27,4 +27,5 @@ public class Status {
     private Integer iniciativa;
     private Integer deslocamento;
     private Integer percepcao;
+    private Personagem personagem;
 }
