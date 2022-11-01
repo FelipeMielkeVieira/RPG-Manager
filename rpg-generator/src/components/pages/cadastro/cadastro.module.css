@@ -1,0 +1,64 @@
+.mapaLogin {
+    background-image: url("../../../img/mapa-login.png");
+    width: 100vw;
+    height: 100vh;
+}
+
+.divPrincipal {
+    background-color: white;
+    position: absolute;
+    left: 32.5%;
+    top: 10%;
+    width: 35%;
+    height: 80%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.divLogo {
+    display: flex;
+    width: 100%;
+    height: 30%;
+    align-items: center;
+    justify-content: center;
+}
+
+.imgDado {
+    width: 80px;
+}
+
+.divNomeSistema {
+    display: flex;
+    flex-direction: column;
+}
+
+.nomeSistema {
+    font-size: 34px;
+    font-weight: 400;
+    margin: 0;
+    margin-left: 15px;
+}
+
+.inputsLogin {
+    margin-top: 15px;
+    width: 70%;
+}
+
+.esqueciSenha {
+    color: rgb(94, 94, 94);
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.divBotoes {
+    width: 60%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.botoesEntrar {
+    text-decoration: none;
+}
