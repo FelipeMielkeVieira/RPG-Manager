@@ -9,7 +9,6 @@ import javax.persistence.Table;
 @Setter
 @ToString
 public class TracosDTO {
-    private Long id;
     private Integer idade;
     private String corOlho;
     private Double altura;

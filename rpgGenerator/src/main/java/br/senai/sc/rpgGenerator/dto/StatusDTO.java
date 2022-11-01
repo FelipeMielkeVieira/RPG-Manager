@@ -9,7 +9,6 @@ import javax.persistence.Table;
 @Setter
 @ToString
 public class StatusDTO {
-    private Long id;
     private Integer forca;
     private Integer destreza;
     private Integer constituicao;
