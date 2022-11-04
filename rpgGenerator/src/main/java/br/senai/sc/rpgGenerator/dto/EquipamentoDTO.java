@@ -15,5 +15,5 @@ public class EquipamentoDTO {
     private String nome;
     private Integer bonus;
     private Integer tipo;
-    private Personagem personagem;
+//    private Personagem personagem;
 }

@@ -13,5 +13,5 @@ import java.util.Date;
 @ToString
 public class OrganizacaoDTO {
     private String nome;
-    private Personagem personagem;
+//    private Personagem personagem;
 }

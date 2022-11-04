@@ -14,5 +14,5 @@ import javax.persistence.Table;
 public class SalvaguardaDTO {
     private Integer sucessos;
     private Integer fracassos;
-    private Personagem personagem;
+//    private Personagem personagem;
 }

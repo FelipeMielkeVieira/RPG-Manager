@@ -1,11 +1,9 @@
 package br.senai.sc.rpgGenerator.dto;
 
-import br.senai.sc.rpgGenerator.model.entities.Campanha;
-import br.senai.sc.rpgGenerator.model.entities.Usuario;
+import br.senai.sc.rpgGenerator.model.entities.*;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import java.util.List;
 
 @Getter
 @Setter
@@ -22,6 +20,11 @@ public class PersonagemDTO {
     private Integer expAtual;
     private Integer expProximo;
     private Byte imagem;
-    private Usuario usuario;
-    private Campanha campanha;
+    //    private Usuario usuario;
+//    private Campanha campanha;
+    private List<Organizacao> organizaoes;
+    private List<Aliado> aliados;
+    private List<Equipamento> equipamentos;
+    private List<Ataque> ataques;
+    private Tracos tracos;
 }

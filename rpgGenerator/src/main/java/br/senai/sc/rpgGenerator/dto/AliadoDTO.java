@@ -10,6 +10,6 @@ import javax.persistence.Table;
 @Setter
 @ToString
 public class AliadoDTO {
-    private Integer aliado_id;
-    private Personagem personagem;
+    private Long aliado_id;
+//    private Personagem personagem;
 }

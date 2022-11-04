@@ -14,5 +14,5 @@ public class AtaqueDTO {
     private String tipo;
     private Integer dano_minimo;
     private Integer dano_maximo;
-    private Personagem personagem;
+//    private Personagem personagem;
 }

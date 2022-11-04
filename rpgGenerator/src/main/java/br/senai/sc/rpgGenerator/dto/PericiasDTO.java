@@ -30,5 +30,5 @@ public class PericiasDTO {
     private Integer prestigiacao;
     private Integer religiao;
     private Integer sobrevivencia;
-    private Personagem personagem;
+//    private Personagem personagem;
 }

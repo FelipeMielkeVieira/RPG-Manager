@@ -15,5 +15,5 @@ public class ExtrasPersonagemDTO {
     private String talentos;
     private String idiomas;
     private String historia;
-    private Personagem personagem;
+//    private Personagem personagem;
 }

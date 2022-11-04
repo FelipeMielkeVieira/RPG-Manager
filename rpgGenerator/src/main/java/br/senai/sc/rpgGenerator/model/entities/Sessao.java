@@ -6,20 +6,23 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "aliado")
+@Table(name = "sessao")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @ToString
 @EqualsAndHashCode
-public class Aliado {
+public class Sessao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private Long aliado_id;
+    @Column(nullable = false, length = 100)
+    private String descricao;
 
-//    private Personagem personagem;
+    @Column(nullable = false)
+    private Date date;
+
+//    private Campanha campanha;
 }

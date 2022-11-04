@@ -12,5 +12,5 @@ import javax.persistence.Table;
 public class VinculoDTO {
     private String nome;
     private String vinculo;
-    private Personagem personagem;
+//    private Personagem personagem;
 }

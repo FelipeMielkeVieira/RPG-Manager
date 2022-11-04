@@ -2,8 +2,7 @@ package br.senai.sc.rpgGenerator.model.entities;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -15,7 +14,12 @@ import java.util.Date;
 @ToString
 @EqualsAndHashCode
 public class Organizacao {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false, length = 50)
     private String nome;
-    private Personagem personagem;
+
+//    private Personagem personagem;
 }

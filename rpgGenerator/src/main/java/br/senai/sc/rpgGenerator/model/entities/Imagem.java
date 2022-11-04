@@ -3,23 +3,21 @@ package br.senai.sc.rpgGenerator.model.entities;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
-@Table(name = "aliado")
+@Table(name = "imagem")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @ToString
 @EqualsAndHashCode
-public class Aliado {
+public class Imagem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private Long aliado_id;
-
-//    private Personagem personagem;
+    @Lob
+    @NonNull
+    private byte[] imagem;
 }

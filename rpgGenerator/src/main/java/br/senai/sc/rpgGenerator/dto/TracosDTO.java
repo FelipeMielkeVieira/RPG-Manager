@@ -19,5 +19,5 @@ public class TracosDTO {
     private String personalidade;
     private String ideais;
     private String fraquezas;
-    private Personagem personagem;
+//    private Personagem personagem;
 }
