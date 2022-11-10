@@ -16,7 +16,7 @@ import java.util.List;
 
 @Controller
 @AllArgsConstructor
-@RequestMapping("rpg-generator/extras-personagem")
+@RequestMapping("rpg_manager/extras_personagem")
 public class ExtrasPersonagemController {
     private ExtrasPersonagemService extrasPersonagemService;
 
