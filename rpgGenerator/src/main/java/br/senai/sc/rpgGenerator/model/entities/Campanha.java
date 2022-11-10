@@ -1,6 +1,7 @@
 package br.senai.sc.rpgGenerator.model.entities;
 
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -40,7 +41,17 @@ public class Campanha {
     @JoinColumn(name = "sessao_id")
     private List<Sessao> sessao;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "mapa_id")
-    private List<Mapa> mapa;
+    private List<Mapa> mapas;
+
+    public void setMapa(MultipartFile[] files) {
+        try {
+            for (MultipartFile file : files) {
+                this.mapas.add(new Mapa(file.getOriginalFilename(), file.getContentType(), file.getBytes()));
+            }
+        } catch (Exception exception) {
+            throw new RuntimeException(exception.getMessage());
+        }
+    }
 }

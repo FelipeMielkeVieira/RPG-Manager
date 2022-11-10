@@ -3,12 +3,14 @@ package br.senai.sc.rpgGenerator.controller;
 import br.senai.sc.rpgGenerator.dto.CampanhaDTO;
 import br.senai.sc.rpgGenerator.model.entities.Campanha;
 import br.senai.sc.rpgGenerator.model.service.CampanhaService;
+import br.senai.sc.rpgGenerator.util.CampanhaUtil;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
@@ -35,9 +37,12 @@ public class CampanhaController {
     }
 
     @PostMapping
-    public ResponseEntity<Object> save(@RequestBody @Valid CampanhaDTO campanhaDTO){
-        Campanha campanha = new Campanha();
-        BeanUtils.copyProperties(campanhaDTO, campanha);
+    public ResponseEntity<Object> save(@RequestParam("mapa") String campanhaJson,
+                                       @RequestParam("mapa") MultipartFile[] mapas){
+        CampanhaUtil campanhaUtil = new CampanhaUtil();
+        Campanha campanha = campanhaUtil.convertJsonToModel(campanhaJson);
+        campanha.setMapa(mapas);
+
         return ResponseEntity.status(HttpStatus.CREATED).body(campanhaService.save(campanha));
     }
 

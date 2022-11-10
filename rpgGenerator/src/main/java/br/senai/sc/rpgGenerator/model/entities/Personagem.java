@@ -1,6 +1,7 @@
 package br.senai.sc.rpgGenerator.model.entities;
 
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.util.List;
@@ -48,7 +49,7 @@ public class Personagem {
     @Column(nullable = false)
     private Integer expProximo;
 
-    @Column
+    @OneToOne(cascade = CascadeType.ALL)
     private Imagem imagem;
 
     @OneToMany
@@ -93,4 +94,12 @@ public class Personagem {
 
 //    private Usuario usuario;
 //    private Campanha campanha;
+
+    public void setImagem(MultipartFile file) {
+        try {
+            this.imagem = new Imagem(file.getOriginalFilename(), file.getContentType(), file.getBytes());
+        } catch (Exception exception) {
+            throw new RuntimeException(exception.getMessage());
+        }
+    }
 }

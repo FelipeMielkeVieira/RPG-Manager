@@ -18,5 +18,5 @@ public class CampanhaDTO {
     //    private Usuario usuario;
     private List<Personagem> personagem;
     private List<Sessao> sessao;
-    private List<Mapa> mapa;
+    private List<Mapa> mapas;
 }

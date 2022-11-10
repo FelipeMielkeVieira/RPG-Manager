@@ -16,7 +16,7 @@ import java.util.List;
 
 @Controller
 @AllArgsConstructor
-@RequestMapping("rpg-generator/vinculo")
+@RequestMapping("rpg_manager/vinculo")
 public class VinculoController {
     private VinculoService vinculoService;
 

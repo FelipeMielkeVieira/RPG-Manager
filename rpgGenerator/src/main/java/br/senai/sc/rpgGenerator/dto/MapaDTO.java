@@ -9,5 +9,6 @@ import lombok.ToString;
 @ToString
 public class MapaDTO {
     private String nome;
-    private byte[] mapa;
+    private String tipo;
+    private byte[] dados;
 }
