@@ -2,12 +2,14 @@ package br.senai.sc.rpgGenerator.model.service;
 
 import br.senai.sc.rpgGenerator.model.entities.Ataque;
 import br.senai.sc.rpgGenerator.repository.AtaqueRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class AtaqueService {
     private AtaqueRepository ataqueRepository;
 

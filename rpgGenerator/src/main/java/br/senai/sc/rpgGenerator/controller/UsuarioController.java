@@ -22,7 +22,7 @@ import java.util.List;
 
 @Controller
 @AllArgsConstructor
-@RequestMapping("rpg-manager/usuario")
+@RequestMapping("rpg_manager/usuario")
 public class UsuarioController {
     private UsuarioService usuarioService;
 

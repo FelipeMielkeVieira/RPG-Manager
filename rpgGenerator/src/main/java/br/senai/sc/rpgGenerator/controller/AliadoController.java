@@ -16,7 +16,7 @@ import java.util.List;
 
 @Controller
 @AllArgsConstructor
-@RequestMapping("rpg-manager/aliado")
+@RequestMapping("rpg_manager/aliado")
 public class AliadoController {
     private AliadoService aliadoService;
 

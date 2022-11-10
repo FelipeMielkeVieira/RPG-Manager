@@ -2,12 +2,14 @@ package br.senai.sc.rpgGenerator.model.service;
 
 import br.senai.sc.rpgGenerator.model.entities.Organizacao;
 import br.senai.sc.rpgGenerator.repository.OrganizacaoRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class OrganizacaoService {
     private OrganizacaoRepository organizacaoRepository;
 

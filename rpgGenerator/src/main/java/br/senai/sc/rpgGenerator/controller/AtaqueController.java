@@ -18,7 +18,7 @@ import java.util.List;
 
 @Controller
 @AllArgsConstructor
-@RequestMapping("rpg-manager/ataque")
+@RequestMapping("rpg_manager/ataque")
 public class AtaqueController {
     private AtaqueService ataqueService;
 

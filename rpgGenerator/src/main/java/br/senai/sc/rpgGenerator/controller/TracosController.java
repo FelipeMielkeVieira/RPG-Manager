@@ -20,7 +20,7 @@ import java.util.List;
 
 @Controller
 @AllArgsConstructor
-@RequestMapping("rpg-manager/tracos")
+@RequestMapping("rpg_manager/tracos")
 public class TracosController {
     private TracosService tracosService;
 

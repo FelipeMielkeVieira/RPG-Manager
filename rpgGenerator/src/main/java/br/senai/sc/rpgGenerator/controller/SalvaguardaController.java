@@ -18,7 +18,7 @@ import java.util.List;
 
 @Controller
 @AllArgsConstructor
-@RequestMapping("rpg-manager/salvaguarda")
+@RequestMapping("rpg_manager/salvaguarda")
 public class SalvaguardaController {
     private SalvaguardaService salvaguardaService;
 
