@@ -5,9 +5,10 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "imagem")
+    @Table(name = "imagem")
 @AllArgsConstructor
 @NoArgsConstructor
+@RequiredArgsConstructor
 @Getter
 @Setter
 @ToString
@@ -17,7 +18,13 @@ public class Imagem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NonNull
+    private String nome;
+
+    @NonNull
+    private String tipo;
+
     @Lob
     @NonNull
-    private byte[] imagem;
+    private byte[] dados;
 }

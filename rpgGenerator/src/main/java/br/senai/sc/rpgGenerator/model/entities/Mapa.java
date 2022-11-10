@@ -8,6 +8,7 @@ import javax.persistence.*;
 @Table(name = "mapa")
 @AllArgsConstructor
 @NoArgsConstructor
+@RequiredArgsConstructor
 @Getter
 @Setter
 @ToString
@@ -17,12 +18,16 @@ public class Mapa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 100)
+    @NonNull
+    @Column(length = 100)
     private String nome;
+
+    @NonNull
+    private String tipo;
 
     @Lob
     @NonNull
-    private byte[] mapa;
+    private byte[] dados;
 
 //    private Campanha campanha;
 }

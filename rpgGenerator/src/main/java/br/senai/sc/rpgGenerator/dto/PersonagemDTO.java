@@ -19,7 +19,7 @@ public class PersonagemDTO {
     private String alinhamento;
     private Integer expAtual;
     private Integer expProximo;
-    private Byte imagem;
+    private Imagem imagem;
     //    private Usuario usuario;
 //    private Campanha campanha;
     private List<Organizacao> organizaoes;

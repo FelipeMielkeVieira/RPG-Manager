@@ -3,12 +3,15 @@ package br.senai.sc.rpgGenerator.controller;
 import br.senai.sc.rpgGenerator.dto.PersonagemDTO;
 import br.senai.sc.rpgGenerator.model.entities.Personagem;
 import br.senai.sc.rpgGenerator.model.service.PersonagemService;
+import br.senai.sc.rpgGenerator.util.ImagemUtil;
+import br.senai.sc.rpgGenerator.util.PersonagemUtil;
 import lombok.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -37,9 +40,12 @@ public class PersonagemController {
     }
 
     @PostMapping
-    public ResponseEntity<Object> save(@RequestBody @Valid PersonagemDTO personagemDTO){
-        Personagem personagem = new Personagem();
-        BeanUtils.copyProperties(personagemDTO, personagem);
+    public ResponseEntity<Object> save(@RequestParam("personagem") String personagemJson,
+                                       @RequestParam("imagem") MultipartFile imagem){
+        PersonagemUtil personagemUtil = new PersonagemUtil();
+        Personagem personagem = personagemUtil.convertJsonToModel(personagemJson);
+
+        personagem.setImagem(imagem);
         return ResponseEntity.status(HttpStatus.CREATED).body(personagemService.save(personagem));
     }
 

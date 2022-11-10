@@ -8,5 +8,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class ImagemDTO {
-    private byte[] imagem;
+    private String nome;
+    private String tipo;
+    private byte[] dados;
 }

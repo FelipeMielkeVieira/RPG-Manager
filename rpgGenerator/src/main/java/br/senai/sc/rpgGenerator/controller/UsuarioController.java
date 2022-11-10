@@ -5,12 +5,14 @@ import br.senai.sc.rpgGenerator.dto.UsuarioDTO;
 import br.senai.sc.rpgGenerator.model.entities.Tracos;
 import br.senai.sc.rpgGenerator.model.entities.Usuario;
 import br.senai.sc.rpgGenerator.model.service.UsuarioService;
+import br.senai.sc.rpgGenerator.util.UsuarioUtil;
 import lombok.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -39,9 +41,12 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public ResponseEntity<Object> save(@RequestBody @Valid UsuarioDTO usuarioDTO){
-        Usuario usuario = new Usuario();
-        BeanUtils.copyProperties(usuarioDTO, usuario);
+    public ResponseEntity<Object> save(@RequestParam("usuario") String usuarioJson,
+                                       @RequestParam("imagem") MultipartFile imagem) {
+        UsuarioUtil usuarioUtil = new UsuarioUtil();
+        Usuario usuario = usuarioUtil.convertJsonToModel(usuarioJson);
+        usuario.setImagem(imagem);
+
         return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.save(usuario));
     }
 
@@ -50,7 +55,6 @@ public class UsuarioController {
         if (!usuarioService.existsById(email)) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Este usuário não existe.");
         }
-
         Usuario usuario = new Usuario();
         BeanUtils.copyProperties(usuarioDTO, usuario);
         usuario.setEmail(email);
