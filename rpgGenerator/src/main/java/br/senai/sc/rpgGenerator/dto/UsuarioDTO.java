@@ -16,9 +16,9 @@ import java.util.List;
 @Setter
 @ToString
 public class UsuarioDTO {
+    private String email;
     private String nome;
     private String senha;
-    private Imagem imagem;
     private List<Campanha> campanha;
     private List<Personagem> personagens;
 }
