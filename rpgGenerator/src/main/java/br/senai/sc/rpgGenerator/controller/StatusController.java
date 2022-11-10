@@ -16,7 +16,7 @@ import java.util.List;
 
 @Controller
 @AllArgsConstructor
-@RequestMapping("rpg-generator/status")
+@RequestMapping("rpg-manager/status")
 public class StatusController {
     private StatusService statusService;
 

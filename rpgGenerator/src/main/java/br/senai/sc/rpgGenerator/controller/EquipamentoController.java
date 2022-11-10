@@ -18,7 +18,7 @@ import java.util.List;
 
 @Controller
 @AllArgsConstructor
-@RequestMapping("rpg-generator/equipamento")
+@RequestMapping("rpg-manager/equipamento")
 public class EquipamentoController {
     private EquipamentoService equipamentoService;
 

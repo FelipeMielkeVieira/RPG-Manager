@@ -18,7 +18,7 @@ import java.util.List;
 
 @Controller
 @AllArgsConstructor
-@RequestMapping("rpg-generator/pericias")
+@RequestMapping("rpg-manager/pericias")
 public class PericiasController {
     private PericiasService periciasService;
 

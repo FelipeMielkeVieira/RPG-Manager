@@ -3,7 +3,6 @@ package br.senai.sc.rpgGenerator.controller;
 import br.senai.sc.rpgGenerator.dto.PersonagemDTO;
 import br.senai.sc.rpgGenerator.model.entities.Personagem;
 import br.senai.sc.rpgGenerator.model.service.PersonagemService;
-import br.senai.sc.rpgGenerator.util.ImagemUtil;
 import br.senai.sc.rpgGenerator.util.PersonagemUtil;
 import lombok.*;
 import org.springframework.beans.BeanUtils;
@@ -13,15 +12,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.List;
 
 @Controller
 @AllArgsConstructor
-@RequestMapping("rpg-generator/personagem")
+@RequestMapping("rpg-manager/personagem")
 public class PersonagemController {
     private PersonagemService personagemService;
 

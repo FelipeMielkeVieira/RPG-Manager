@@ -18,7 +18,7 @@ import java.util.List;
 
 @Controller
 @AllArgsConstructor
-@RequestMapping("rpg-generator/campanha")
+@RequestMapping("rpg-manager/campanha")
 public class CampanhaController {
     private CampanhaService campanhaService;
 
