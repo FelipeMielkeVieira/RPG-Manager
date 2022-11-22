@@ -5,12 +5,13 @@ import imgDado from "../../../img/dado.png";
 import TextField from '@mui/material/TextField';
 import { Button, Alert, Collapse, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 const Login = () => {
 
     const [alertaInvalido, setAlertaInvalido] = React.useState(false);
     const [dados, setDados] = React.useState({ email: "", senha: "" });
+    const navigate = useNavigate();
 
     const saveInput = (numInput, e) => {
         if (numInput == 1) {
@@ -27,7 +28,7 @@ const Login = () => {
                 setAlertaInvalido(false);
             }, 3000);
         } else {
-
+            navigate("/home");
         }
     }
 
