@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from "./login.module.css";
 
-import imgDado from "../../../img/dado.png";
+import imgDado from "../../img/dado.png";
 import TextField from '@mui/material/TextField';
 import { Button, Alert, Collapse, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';

@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import React from 'react';
 import './App.css';
 import {
@@ -7,17 +6,25 @@ import {
   Route
 } from "react-router-dom";
 
-import Login from "./components/pages/login/login";
-import Cadastro from "./components/pages/cadastro/cadastro";
+import Login from "./pages/login/login";
+import Cadastro from "./pages/cadastro/cadastro";
+import HomeJogador from "./pages/homeJogador/homeJogador";
+import HomeMestre from "./pages/homeMestre/homeMestre";
+
+import ToggleColorMode from './service/temaProvedor';
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path='/' element={<Login></Login>}></Route>
-        <Route path='/cadastro' element={<Cadastro></Cadastro>}></Route>
-      </Routes>
-    </Router>
+    <ToggleColorMode>
+      <Router>
+        <Routes>
+          <Route path='/' element={<Login></Login>}></Route>
+          <Route path='/cadastro' element={<Cadastro></Cadastro>}></Route>
+          <Route path='/home/jogador' element={<HomeJogador></HomeJogador>}></Route>
+          <Route path='/home/mestre' element={<HomeMestre></HomeMestre>}></Route>
+        </Routes>
+      </Router>
+    </ToggleColorMode>
   );
 }
 

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import styles from "./cadastro.module.css";
 
-import imgDado from "../../../img/dado.png";
+import imgDado from "../../img/dado.png";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { Link } from "react-router-dom"
