@@ -1,8 +1,11 @@
 package br.senai.sc.rpgGenerator.model.service;
 
 import br.senai.sc.rpgGenerator.model.entities.Campanha;
+import br.senai.sc.rpgGenerator.model.entities.Usuario;
 import br.senai.sc.rpgGenerator.repository.CampanhaRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,5 +34,13 @@ public class CampanhaService {
 
     public void deleteById(Long aLong) {
         campanhaRepository.deleteById(aLong);
+    }
+
+    public Page<Campanha> findPage(Usuario usuario, String nome, Pageable pageable) {
+        return campanhaRepository.findByUsuarioAndNomeContaining(usuario, nome, pageable);
+    }
+
+    public Page<Campanha> findPage(Usuario usuario, Pageable pageable) {
+        return campanhaRepository.findByUsuario(usuario, pageable);
     }
 }

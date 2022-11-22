@@ -33,10 +33,6 @@ public class Usuario implements UserDetails {
     @JoinColumn(name = "campanha_id")
     private List<Campanha> campanha;
 
-    @OneToMany
-    @JoinColumn(name = "personagem_id")
-    private List<Personagem> personagens;
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         SimpleGrantedAuthority authority = new SimpleGrantedAuthority(this.getClass().getSimpleName());

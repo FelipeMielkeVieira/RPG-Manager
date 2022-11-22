@@ -2,10 +2,15 @@ package br.senai.sc.rpgGenerator.controller;
 
 import br.senai.sc.rpgGenerator.dto.CampanhaDTO;
 import br.senai.sc.rpgGenerator.model.entities.Campanha;
+import br.senai.sc.rpgGenerator.model.entities.Usuario;
 import br.senai.sc.rpgGenerator.model.service.CampanhaService;
 import br.senai.sc.rpgGenerator.util.CampanhaUtil;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -34,6 +39,16 @@ public class CampanhaController {
         }
 
         return ResponseEntity.status(HttpStatus.OK).body(campanhaService.findById(id).get());
+    }
+
+    @GetMapping("/page")
+    public ResponseEntity<Page<Campanha>> findPage(@PageableDefault(sort = "id", direction = Sort.Direction.ASC) Pageable pageable,
+            @RequestParam Usuario usuario, @RequestParam(required = false) String nome) {
+        if(nome != null && !nome.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.OK).body(campanhaService.findPage(usuario, nome, pageable));
+        } else {
+            return ResponseEntity.status(HttpStatus.OK).body(campanhaService.findPage(usuario, pageable));
+        }
     }
 
     @PostMapping

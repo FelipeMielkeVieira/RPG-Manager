@@ -46,6 +46,10 @@ public class Personagem {
     @JoinColumn(name = "campanha_id")
     private Campanha campanha;
 
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
+
     public void setArquivos(List<MultipartFile> files) {
         List<Arquivo> listaArquivos = new ArrayList<>();
         try {
