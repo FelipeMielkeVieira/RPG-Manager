@@ -62,3 +62,10 @@
 .botoesEntrar {
     text-decoration: none;
 }
+
+.alertaInvalido {
+    width: 30vw;
+    position: absolute;
+    left: 2vw;
+    top: 2vh;
+}

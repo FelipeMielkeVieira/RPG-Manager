@@ -10,10 +10,12 @@ import Login from "./pages/login/login";
 import Cadastro from "./pages/cadastro/cadastro";
 import HomeJogador from "./pages/homeJogador/homeJogador";
 import HomeMestre from "./pages/homeMestre/homeMestre";
+import PaginaDados from './pages/paginaDados/paginaDados';
 
 import ToggleColorMode from './service/temaProvedor';
 
 function App() {
+
   return (
     <ToggleColorMode>
       <Router>
@@ -21,6 +23,7 @@ function App() {
           <Route path='/' element={<Login></Login>}></Route>
           <Route path='/cadastro' element={<Cadastro></Cadastro>}></Route>
           <Route path='/home/jogador' element={<HomeJogador></HomeJogador>}></Route>
+          <Route path='/home/jogador/dados' element={<PaginaDados></PaginaDados>}></Route>
           <Route path='/home/mestre' element={<HomeMestre></HomeMestre>}></Route>
         </Routes>
       </Router>
