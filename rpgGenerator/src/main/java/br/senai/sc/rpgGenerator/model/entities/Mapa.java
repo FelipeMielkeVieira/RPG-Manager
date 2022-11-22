@@ -29,5 +29,7 @@ public class Mapa {
     @NonNull
     private byte[] dados;
 
-//    private Campanha campanha;
+    @ManyToOne
+    @JoinColumn(name = "campanha_id")
+    private Campanha campanha;
 }

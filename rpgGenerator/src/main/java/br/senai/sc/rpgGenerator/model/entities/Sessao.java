@@ -14,6 +14,7 @@ import java.util.Date;
 @ToString
 @EqualsAndHashCode
 public class Sessao {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,5 +25,7 @@ public class Sessao {
     @Column(nullable = false)
     private Date date;
 
-//    private Campanha campanha;
+    @ManyToOne
+    @JoinColumn(name = "id_campanha")
+    private Campanha campanha;
 }

@@ -29,9 +29,13 @@ public class Campanha {
     @Column(nullable = false, length = 400)
     private String descricao;
 
-//    @ManyToOne
-//    @JoinColumn(name = "usuario_email")
-//    private Usuario usuario;
+    @ManyToOne
+    @JoinColumn(name = "usuario_email")
+    private Usuario usuario;
+
+    @OneToOne
+    @JoinColumn(name = "imagem_id")
+    private Imagem imagem;
 
     @OneToMany
     @JoinColumn(name = "personagem_id")

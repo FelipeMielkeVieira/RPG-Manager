@@ -2,10 +2,15 @@ package br.senai.sc.rpgGenerator.controller;
 
 import br.senai.sc.rpgGenerator.dto.PersonagemDTO;
 import br.senai.sc.rpgGenerator.model.entities.Personagem;
+import br.senai.sc.rpgGenerator.model.entities.Usuario;
 import br.senai.sc.rpgGenerator.model.service.PersonagemService;
 import br.senai.sc.rpgGenerator.util.PersonagemUtil;
 import lombok.*;
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -36,13 +41,21 @@ public class PersonagemController {
         return ResponseEntity.status(HttpStatus.OK).body(personagemService.findById(id).get());
     }
 
+    @GetMapping("/page")
+    public ResponseEntity<Page<Personagem>> findPage(@PageableDefault(sort = "id", direction = Sort.Direction.ASC) Pageable pageable,
+                                                     @RequestParam Usuario usuario, @RequestParam(required = false) String nome) {
+        if(nome != null && !nome.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.OK).body(personagemService.findPage(usuario, nome, pageable));
+        } else {
+            return ResponseEntity.status(HttpStatus.OK).body(personagemService.findPage(usuario, pageable));
+        }
+    }
+
     @PostMapping
-    public ResponseEntity<Object> save(@RequestParam("personagem") String personagemJson,
-                                       @RequestParam("imagem") MultipartFile imagem){
+    public ResponseEntity<Object> save(@RequestParam("personagem") String personagemJson, @RequestParam("arquivos") List<MultipartFile> arquivos){
         PersonagemUtil personagemUtil = new PersonagemUtil();
         Personagem personagem = personagemUtil.convertJsonToModel(personagemJson);
-
-        personagem.setImagem(imagem);
+        personagem.setArquivos(arquivos);
         return ResponseEntity.status(HttpStatus.CREATED).body(personagemService.save(personagem));
     }
 

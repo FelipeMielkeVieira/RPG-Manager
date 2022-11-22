@@ -13,17 +13,7 @@ public class PersonagemDTO {
     private String nome;
     private Integer mana;
     private Integer vida;
-    private String classe;
-    private String raca;
-    private String antecedente;
-    private String alinhamento;
     private Integer expAtual;
     private Integer expProximo;
-    //    private Usuario usuario;
-//    private Campanha campanha;
-    private List<Organizacao> organizaoes;
-    private List<Aliado> aliados;
-    private List<Equipamento> equipamentos;
-    private List<Ataque> ataques;
-    private Tracos tracos;
+    private Usuario usuario;
 }

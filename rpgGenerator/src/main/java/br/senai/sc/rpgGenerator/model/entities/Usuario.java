@@ -29,24 +29,9 @@ public class Usuario implements UserDetails {
     @Column(nullable = false)
     private String senha;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private Imagem imagem;
-
     @OneToMany
     @JoinColumn(name = "campanha_id")
     private List<Campanha> campanha;
-
-    @OneToMany
-    @JoinColumn(name = "personagem_id")
-    private List<Personagem> personagens;
-
-    public void setImagem(MultipartFile file) {
-        try {
-            this.imagem = new Imagem(file.getOriginalFilename(), file.getContentType(), file.getBytes());
-        } catch (Exception exception) {
-            throw new RuntimeException(exception.getMessage());
-        }
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
