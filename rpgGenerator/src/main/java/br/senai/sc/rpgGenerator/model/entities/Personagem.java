@@ -4,6 +4,7 @@ import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -28,18 +29,6 @@ public class Personagem {
     @Column(nullable = false)
     private Integer vida;
 
-    @Column(nullable = false, length = 50)
-    private String classe;
-
-    @Column(nullable = false, length = 50)
-    private String raca;
-
-    @Column(length = 50)
-    private String antecedente;
-
-    @Column(nullable = false, length = 50)
-    private String alinhamento;
-
     @Column(nullable = false)
     private Integer nivel;
 
@@ -49,57 +38,23 @@ public class Personagem {
     @Column(nullable = false)
     private Integer expProximo;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private Imagem imagem;
-
     @OneToMany
-    @JoinColumn(name = "vinculo_id")
-    private List<Vinculo> vinculo;
+    @JoinColumn(name = "personagem_id")
+    private List<Arquivo> arquivos;
 
-    @OneToOne
-    @JoinColumn(name = "salvaguarda_id")
-    private Salvaguarda salvaguarda;
+    @ManyToOne
+    @JoinColumn(name = "campanha_id")
+    private Campanha campanha;
 
-    @OneToOne
-    @JoinColumn(name = "status_id")
-    private Status status;
-
-    @OneToOne
-    @JoinColumn(name = "pericias_id")
-    private Pericias pericias;
-
-    @OneToOne
-    @JoinColumn(name = "extaras_personagem_id")
-    private ExtrasPersonagem extrasPersonagem;
-
-    @OneToMany
-    @JoinColumn(name = "organizacao_id")
-    private List<Organizacao> organizaoes;
-
-    @OneToMany
-    @JoinColumn(name = "aliado_id")
-    private List<Aliado> aliados;
-
-    @OneToMany
-    @JoinColumn(name = "equipamento_id")
-    private List<Equipamento> equipamentos;
-
-    @OneToMany
-    @JoinColumn(name = "ataque_id")
-    private List<Ataque> ataques;
-
-    @OneToOne
-    @JoinColumn(name = "tracos_id")
-    private Tracos tracos;
-
-//    private Usuario usuario;
-//    private Campanha campanha;
-
-    public void setImagem(MultipartFile file) {
+    public void setArquivos(List<MultipartFile> files) {
+        List<Arquivo> listaArquivos = new ArrayList<>();
         try {
-            this.imagem = new Imagem(file.getOriginalFilename(), file.getContentType(), file.getBytes());
-        } catch (Exception exception) {
-            throw new RuntimeException(exception.getMessage());
+            for (MultipartFile file : files) {
+                listaArquivos.add(new Arquivo(file.getOriginalFilename(), file.getContentType(), file.getBytes()));
+            }
+            this.arquivos = listaArquivos;
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
         }
     }
 }

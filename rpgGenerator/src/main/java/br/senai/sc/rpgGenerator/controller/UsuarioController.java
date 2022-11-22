@@ -1,11 +1,8 @@
 package br.senai.sc.rpgGenerator.controller;
 
-import br.senai.sc.rpgGenerator.dto.TracosDTO;
 import br.senai.sc.rpgGenerator.dto.UsuarioDTO;
-import br.senai.sc.rpgGenerator.model.entities.Tracos;
 import br.senai.sc.rpgGenerator.model.entities.Usuario;
 import br.senai.sc.rpgGenerator.model.service.UsuarioService;
-import br.senai.sc.rpgGenerator.util.UsuarioUtil;
 import lombok.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
@@ -13,10 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.List;

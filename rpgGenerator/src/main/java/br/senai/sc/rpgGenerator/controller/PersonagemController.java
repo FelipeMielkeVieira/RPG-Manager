@@ -37,12 +37,10 @@ public class PersonagemController {
     }
 
     @PostMapping
-    public ResponseEntity<Object> save(@RequestParam("personagem") String personagemJson,
-                                       @RequestParam("imagem") MultipartFile imagem){
+    public ResponseEntity<Object> save(@RequestParam("personagem") String personagemJson, @RequestParam("arquivos") List<MultipartFile> arquivos){
         PersonagemUtil personagemUtil = new PersonagemUtil();
         Personagem personagem = personagemUtil.convertJsonToModel(personagemJson);
-
-        personagem.setImagem(imagem);
+        personagem.setArquivos(arquivos);
         return ResponseEntity.status(HttpStatus.CREATED).body(personagemService.save(personagem));
     }
 
