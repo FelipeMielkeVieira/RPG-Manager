@@ -19,6 +19,4 @@ public class UsuarioDTO {
     private String email;
     private String nome;
     private String senha;
-    private List<Campanha> campanha;
-    private List<Personagem> personagens;
 }
