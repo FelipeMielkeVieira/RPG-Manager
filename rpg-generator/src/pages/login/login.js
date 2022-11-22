@@ -1,17 +1,29 @@
-import React from 'react'
 import styles from "./login.module.css";
+import React, { useEffect } from 'react';
 
 import imgDado from "../../img/dado.png";
 import TextField from '@mui/material/TextField';
 import { Button, Alert, Collapse, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom";
+import api from "../../service/userService";
 
 const Login = () => {
 
     const [alertaInvalido, setAlertaInvalido] = React.useState(false);
+    const [alertaCadastro, setAlertaCadastro] = React.useState(false);
     const [dados, setDados] = React.useState({ email: "", senha: "" });
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (localStorage.getItem('cadastro')) {
+            localStorage.removeItem('cadastro');
+            setAlertaCadastro(true);
+            setTimeout(() => {
+                setAlertaCadastro(false);
+            }, 3000);
+        }
+    }, []);
 
     const saveInput = (numInput, e) => {
         if (numInput == 1) {
@@ -21,14 +33,16 @@ const Login = () => {
         }
     }
 
-    const login = () => {
-        if (dados.email != "felipe@gmail" || dados.senha != "123") {
+    const login = async () => {
+        try {
+            const data = await api.post("/login", { email: dados.email, senha: dados.senha });
+            localStorage.setItem("token", JSON.stringify(data.data));
+            navigate("/home");
+        } catch(error) {
             setAlertaInvalido(true);
             setTimeout(() => {
                 setAlertaInvalido(false);
             }, 3000);
-        } else {
-            navigate("/home");
         }
     }
 
@@ -51,6 +65,25 @@ const Login = () => {
                     }
                     onClose={() => { }}>Email ou Senha Inválidos!</Alert>
             </Collapse>
+
+            <Collapse in={alertaCadastro}>
+                <Alert className={styles.alertaInvalido}
+                    severity='success'
+                    action={
+                        <IconButton
+                            aria-label="close"
+                            color="inherit"
+                            size="small"
+                            onClick={() => {
+                                setAlertaCadastro(false);
+                            }}
+                        >
+                            <CloseIcon fontSize="inherit" />
+                        </IconButton>
+                    }
+                    onClose={() => { }}>Cadastro efetuado com sucesso!</Alert>
+            </Collapse>
+
             <div className={styles.divPrincipal}>
                 <div className={styles.divLogo}>
                     <img src={imgDado} className={styles.imgDado}></img>

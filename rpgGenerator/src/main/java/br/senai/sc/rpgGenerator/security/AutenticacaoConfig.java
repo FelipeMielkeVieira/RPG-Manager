@@ -26,10 +26,10 @@ public class AutenticacaoConfig extends WebSecurityConfigurerAdapter {
             httpSecurity.authorizeRequests()
                     .antMatchers("/login").permitAll()
                     .antMatchers(HttpMethod.POST, "/rpg_manager/usuario").permitAll()
-                    .anyRequest().authenticated()
-                    .and().csrf().disable()
-                    .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                    .and().addFilterBefore(new AutenticacaoFiltro(autenticacaoService), UsernamePasswordAuthenticationFilter.class);
+                    .anyRequest().permitAll()
+                    .and().csrf().disable();
+//                    .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//                    .and().addFilterBefore(new AutenticacaoFiltro(autenticacaoService), UsernamePasswordAuthenticationFilter.class);
         } catch (Exception e) {
             e.printStackTrace();
         }

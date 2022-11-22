@@ -11,10 +11,12 @@ import Cadastro from "./pages/cadastro/cadastro";
 import HomeJogador from "./pages/homeJogador/homeJogador";
 import HomeMestre from "./pages/homeMestre/homeMestre";
 import EditPerfil from './pages/editPerfil/editPerfil';
+import PaginaDados from './pages/paginaDados/paginaDados';
 
 import ToggleColorMode from './service/temaProvedor';
 
 function App() {
+
   return (
     <ToggleColorMode>
       <Router>
@@ -24,6 +26,7 @@ function App() {
           <Route path='/home/jogador' element={<HomeJogador></HomeJogador>}></Route>
           <Route path='/home/mestre' element={<HomeMestre></HomeMestre>}></Route> 
           <Route path='/perfil' element={<EditPerfil></EditPerfil>}></Route> 
+          <Route path='/home/jogador/dados' element={<PaginaDados></PaginaDados>}></Route>
         </Routes>
       </Router>
     </ToggleColorMode>

@@ -17,6 +17,7 @@ import java.util.List;
 
 @Controller
 @AllArgsConstructor
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("rpg_manager/usuario")
 public class UsuarioController {
     private UsuarioService usuarioService;
