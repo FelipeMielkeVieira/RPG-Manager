@@ -10,6 +10,7 @@ import Login from "./pages/login/login";
 import Cadastro from "./pages/cadastro/cadastro";
 import HomeJogador from "./pages/homeJogador/homeJogador";
 import HomeMestre from "./pages/homeMestre/homeMestre";
+import EditPerfil from './pages/editPerfil/editPerfil';
 
 import ToggleColorMode from './service/temaProvedor';
 
@@ -21,7 +22,8 @@ function App() {
           <Route path='/' element={<Login></Login>}></Route>
           <Route path='/cadastro' element={<Cadastro></Cadastro>}></Route>
           <Route path='/home/jogador' element={<HomeJogador></HomeJogador>}></Route>
-          <Route path='/home/mestre' element={<HomeMestre></HomeMestre>}></Route>
+          <Route path='/home/mestre' element={<HomeMestre></HomeMestre>}></Route> 
+          <Route path='/perfil' element={<EditPerfil></EditPerfil>}></Route> 
         </Routes>
       </Router>
     </ToggleColorMode>
