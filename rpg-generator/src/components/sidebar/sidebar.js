@@ -122,9 +122,12 @@ const Sidebar = (props) => {
             </AppBar>
             <Drawer variant="permanent" open={open}>
                 <DrawerHeader>
-                    <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-                    </IconButton>
+                    <Box className='flex w-full items-center justify-between'>
+                        <Typography>RPG Manager</Typography>
+                        <IconButton onClick={handleDrawerClose}>
+                            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+                        </IconButton>
+                    </Box>
                 </DrawerHeader>
                 <Divider />
                 <List>
