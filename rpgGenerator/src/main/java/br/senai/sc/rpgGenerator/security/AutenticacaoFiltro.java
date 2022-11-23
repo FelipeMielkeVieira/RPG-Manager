@@ -20,7 +20,7 @@ public class AutenticacaoFiltro extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String token = request.getHeader("Authorization");
-        if (token.startsWith("Bearer ")) {
+        if (token != null && token.startsWith("Bearer ")) {
             token = token.substring(7);
         } else {
             token = null;
