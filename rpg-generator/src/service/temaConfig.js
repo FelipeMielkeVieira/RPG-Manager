@@ -48,7 +48,7 @@ const getDesignTokens = (mode) => ({
                 link: {
                     main: '#00579D',
                 },
-                divider: { main: 'rgba(0, 0, 0, 0.3)' },
+                divider: { main: '#52494B' },
                 text: {
                     primary: '#000000',
                     secondary: '#5CACC4',
@@ -56,7 +56,7 @@ const getDesignTokens = (mode) => ({
                 },
                 background: {
                     default: '#FFFFFF',
-                    paper: '#FFFFFF'
+                    paper: '#42393B'
                 },
                 component: {
                     main: '#EFEFEF'
