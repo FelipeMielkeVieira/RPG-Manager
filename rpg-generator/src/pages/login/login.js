@@ -7,6 +7,7 @@ import { Button, Alert, Collapse, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { Link, useNavigate } from "react-router-dom";
 import api from "../../service/userService";
+import axios from "axios";
 
 const Login = () => {
 
@@ -38,7 +39,7 @@ const Login = () => {
             const data = await api.post("/login", { email: dados.email, senha: dados.senha });
             localStorage.setItem("token", JSON.stringify(data.data));
             navigate("/home");
-        } catch(error) {
+        } catch (error) {
             setAlertaInvalido(true);
             setTimeout(() => {
                 setAlertaInvalido(false);
