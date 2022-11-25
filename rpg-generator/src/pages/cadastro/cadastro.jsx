@@ -6,7 +6,8 @@ import imgDado from "../../img/dado.png";
 import { TextField, Button, Alert, Collapse, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { Link } from "react-router-dom"
-import api from "../../service/userService";
+
+import api from "../../service/api";
 
 const Cadastro = () => {
 

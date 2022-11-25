@@ -6,8 +6,8 @@ import TextField from '@mui/material/TextField';
 import { Button, Alert, Collapse, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { Link, useNavigate } from "react-router-dom";
-import api from "../../service/userService";
-import axios from "axios";
+
+import api from "../../service/api";
 
 const Login = () => {
 
