@@ -35,11 +35,11 @@ const Header = (props) => {
                     ?
                     <Box className='flex gap-12'>
                         <Typography className='cursor-pointer' variant='h5' color='text.secondary'>Jogador</Typography>
-                        <Typography className='cursor-pointer' variant='h5' onClick={() => props.setAba("mestre")} color='text.white'>Mestre</Typography>
+                        <Typography className='cursor-pointer' variant='h5' onClick={() => { navigate("/home"); props.setAba("mestre") }} color='text.white'>Mestre</Typography>
                     </Box>
                     :
                     <Box className='flex gap-12'>
-                        <Typography className='cursor-pointer' variant='h5' onClick={() => props.setAba("jogador")} color='text.white'>Jogador</Typography>
+                        <Typography className='cursor-pointer' variant='h5' onClick={() => { navigate("/home"); props.setAba("jogador") }} color='text.white'>Jogador</Typography>
                         <Typography className='cursor-pointer' variant='h5' color='text.secondary'>Mestre</Typography>
                     </Box>
                 }

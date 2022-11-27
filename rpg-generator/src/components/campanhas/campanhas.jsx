@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from '@mui/material'
 
 import Campanha from '../campanha/campanha'
-import axios from '../../service/api'
+import CampanhaService from '../../service/campanha'
 
 const Campanhas = () => {
     const [campanhas, setCampanhas] = useState([]);
@@ -11,7 +11,7 @@ const Campanhas = () => {
     const [openDialogCampanha, setOpenDialogCampanha] = useState(false)
 
     useEffect(() => {
-        axios.get('/campanha').then((response) => {
+        CampanhaService.getAll().then((response) => {
             console.log(response);
             setCampanhas(response.data)
         })

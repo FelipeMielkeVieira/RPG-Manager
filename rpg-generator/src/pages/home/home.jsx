@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 
 import Sidebar from '../../components/sidebar/sidebar'
 import ConteudoJogador from '../../components/conteudo-jogador/conteudo-jogador';
+import ConteudoMestre from '../../conteudo-mestre/conteudo-mestre';
 
 const Home = () => {
     const [aba, setAba] = useState("jogador");
@@ -9,7 +10,7 @@ const Home = () => {
     return (
         <Sidebar aba={aba} setAba={setAba}>
                 {aba === "jogador" && <ConteudoJogador />}
-                {aba === "mestre" && <div>Home Mestre</div>}
+                {aba === "mestre" && <ConteudoMestre />}
         </Sidebar>
     )
 }

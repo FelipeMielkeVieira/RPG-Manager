@@ -3,31 +3,26 @@ package br.senai.sc.rpgGenerator.model.entities;
 import lombok.*;
 
 import javax.persistence.*;
+import java.sql.Date;
 
 @Entity
-@Table(name = "mapa")
+@Table(name = "sistema")
 @AllArgsConstructor
 @NoArgsConstructor
-@RequiredArgsConstructor
 @Getter
 @Setter
 @ToString
 @EqualsAndHashCode
-public class Mapa {
+public class Sistema {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NonNull
-    @Column(length = 100)
-    private String nome;
+    @Column(nullable = false)
+    private String descricao;
 
-    @NonNull
-    private String tipo;
-
-    @Lob
-    @NonNull
-    private byte[] dados;
+    @Column(nullable = false)
+    private Date date;
 
     @ManyToOne
     @JoinColumn(name = "usuario_email")

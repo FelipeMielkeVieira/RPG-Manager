@@ -21,6 +21,7 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @Controller
 @AllArgsConstructor
 @RequestMapping("rpg_manager/campanha")
@@ -43,7 +44,7 @@ public class CampanhaController {
 
     @GetMapping("/page")
     public ResponseEntity<Page<Campanha>> findPage(@PageableDefault(sort = "id", direction = Sort.Direction.ASC) Pageable pageable,
-            @RequestParam Usuario usuario, @RequestParam(required = false) String nome) {
+                                                   @RequestParam Usuario usuario, @RequestParam(required = false) String nome) {
         if(nome != null && !nome.isEmpty()) {
             return ResponseEntity.status(HttpStatus.OK).body(campanhaService.findPage(usuario, nome, pageable));
         } else {
@@ -84,3 +85,4 @@ public class CampanhaController {
         return ResponseEntity.status(HttpStatus.OK).body("Campanha deletada com sucesso!");
     }
 }
+
