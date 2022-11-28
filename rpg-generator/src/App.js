@@ -27,7 +27,7 @@ function App() {
           <Route path='/cadastro' element={<Cadastro></Cadastro>}></Route>
           <Route path='/home' element={<Home></Home>}></Route>
           <Route path='/perfil' element={<EditPerfil></EditPerfil>}></Route> 
-          <Route path='/home/jogador/dados' element={<PaginaDados></PaginaDados>}></Route>
+          <Route path='/dados' element={<PaginaDados></PaginaDados>}></Route>
           <Route path='/criar-campanha' element={<CriarCampanha></CriarCampanha>}></Route>
           <Route path='/mapas' element={<Mapas></Mapas>}></Route>
           <Route path='/sistemas' element={<Sistemas></Sistemas>}></Route>
