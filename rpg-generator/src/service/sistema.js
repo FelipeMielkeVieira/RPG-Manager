@@ -1,10 +1,17 @@
 import axios from "./api";
 
-const sistema = "/sistema";
+const map = "/sistema";
 
 class SistemaService {
-    getAll() {
-        return axios.get(sistema);
+    async getAll() {
+        const res = await axios.get(map);
+        return res.data;
+    }
+
+    async post(sistema) {
+        console.log(sistema)
+        const res = await axios.post(map, sistema);
+        return res.data;
     }
 }
 
