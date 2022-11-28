@@ -1,13 +1,15 @@
 import React, { useContext } from 'react'
-import styles from "./cadastro.module.css";
 import { useNavigate } from 'react-router-dom';
-
-import imgDado from "../../img/dado.png";
-import { TextField, Button, Alert, Collapse, IconButton } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
 import { Link } from "react-router-dom"
 
-import api from "../../service/api";
+import styles from "./cadastro.module.css";
+
+import { TextField, Button, Alert, Collapse, IconButton } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
+
+import imgDado from "../../img/dado.png";
+
+import UsuarioService from "../../service/usuario";
 
 const Cadastro = () => {
 
@@ -19,7 +21,8 @@ const Cadastro = () => {
         if (dados.email && dados.nome && dados.senha) {
             if(dados.senha == dados.repetirSenha) {
                 let dadosNovos = { email: dados.email, nome: dados.nome, senha: dados.senha }
-                const data = await api.post("/rpg_manager/usuario", dadosNovos);
+                const data = await UsuarioService.post(dadosNovos);
+                console.log("data cadastro: ", data.data);
                 localStorage.setItem("cadastro", "1")
                 navigate('/');
             } else {

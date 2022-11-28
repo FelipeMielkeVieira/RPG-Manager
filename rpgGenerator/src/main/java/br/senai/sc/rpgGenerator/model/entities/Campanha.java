@@ -49,13 +49,13 @@ public class Campanha {
     @JoinColumn(name = "mapa_id")
     private List<Mapa> mapas;
 
-    public void setMapa(MultipartFile[] files) {
-        try {
-            for (MultipartFile file : files) {
-                this.mapas.add(new Mapa(file.getOriginalFilename(), file.getContentType(), file.getBytes()));
-            }
-        } catch (Exception exception) {
-            throw new RuntimeException(exception.getMessage());
-        }
-    }
+//    public void setMapa(MultipartFile[] files) {
+//        try {
+//            for (MultipartFile file : files) {
+//                this.mapas.add(new Mapa(file.getOriginalFilename(), file.getContentType(), file.getBytes()));
+//            }
+//        } catch (Exception exception) {
+//            throw new RuntimeException(exception.getMessage());
+//        }
+//    }
 }

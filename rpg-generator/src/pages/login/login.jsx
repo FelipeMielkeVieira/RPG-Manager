@@ -1,13 +1,15 @@
-import styles from "./login.module.css";
 import React, { useEffect } from 'react';
+import { Link, useNavigate } from "react-router-dom";
 
-import imgDado from "../../img/dado.png";
+import styles from "./login.module.css";
+
 import TextField from '@mui/material/TextField';
 import { Button, Alert, Collapse, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import { Link, useNavigate } from "react-router-dom";
 
-import api from "../../service/api";
+import imgDado from "../../img/dado.png";
+
+import UsuarioService from "../../service/usuario"
 
 const Login = () => {
 
@@ -36,8 +38,11 @@ const Login = () => {
 
     const login = async () => {
         try {
-            const data = await api.post("/login", { email: dados.email, senha: dados.senha });
-            localStorage.setItem("token", JSON.stringify(data.data));
+            console.log(dados)
+            const data = await UsuarioService.login(dados.email, dados.senha);
+            // localStorage.setItem("token", JSON.stringify(data.data));
+            console.log(data.data);
+            localStorage.setItem("email-user", JSON.stringify(data.data.email));
             navigate("/home");
         } catch (error) {
             setAlertaInvalido(true);

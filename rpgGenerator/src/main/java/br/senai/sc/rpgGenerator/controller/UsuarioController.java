@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @Controller
@@ -45,6 +46,17 @@ public class UsuarioController {
 //        usuario.setSenha(encoder.encode(usuario.getSenha()));
 
         return ResponseEntity.status(HttpStatus.OK).body(usuarioService.save(usuario));
+    }
+
+    @GetMapping("/login/{email}/{senha}")
+    public ResponseEntity<Object> login(@PathVariable(value = "email") String email, @PathVariable(value = "senha") String senha) {
+        Optional<Usuario> usuario = usuarioService.findByEmailAndSenha(email, senha);
+
+        if (usuario.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Login não existente!");
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(usuario.get());
     }
 
     @PutMapping("/{email}")

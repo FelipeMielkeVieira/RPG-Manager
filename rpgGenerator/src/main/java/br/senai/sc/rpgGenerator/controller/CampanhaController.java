@@ -57,7 +57,7 @@ public class CampanhaController {
                                        @RequestParam("mapa") MultipartFile[] mapas){
         CampanhaUtil campanhaUtil = new CampanhaUtil();
         Campanha campanha = campanhaUtil.convertJsonToModel(campanhaJson);
-        campanha.setMapa(mapas);
+//        campanha.setMapa(mapas);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(campanhaService.save(campanha));
     }

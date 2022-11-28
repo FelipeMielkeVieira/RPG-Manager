@@ -34,4 +34,8 @@ public class UsuarioService {
     public void deleteById(String email) {
         usuarioRepository.deleteById(email);
     }
+
+    public Optional<Usuario> findByEmailAndSenha(String email, String senha) {
+        return usuarioRepository.findByEmailAndSenha(email, senha);
+    }
 }
