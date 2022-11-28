@@ -44,7 +44,7 @@ public class CampanhaService {
         return campanhaRepository.findByUsuario(usuario, pageable);
     }
 
-    public List<Campanha> findByUsuario(Usuario usuario) {
-        return campanhaRepository.findByUsuario(usuario);
+    public List<Campanha> findByUsuarioAndArquivada(Usuario usuario, Boolean arquivada) {
+        return campanhaRepository.findByUsuarioAndArquivada(usuario, arquivada);
     }
 }

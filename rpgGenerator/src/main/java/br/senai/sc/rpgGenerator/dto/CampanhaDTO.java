@@ -14,6 +14,7 @@ public class CampanhaDTO {
     private String descricao;
     private Usuario usuario;
     private Sistema sistema;
+    private Boolean arquivada;
 //    private Mapa mapa;
 //    private List<Personagem> personagem;
 }

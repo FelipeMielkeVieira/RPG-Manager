@@ -29,6 +29,9 @@ public class Campanha {
     @Column(nullable = false, length = 400)
     private String descricao;
 
+    @Column(nullable = false)
+    private Boolean arquivada;
+
     @ManyToOne
     @JoinColumn(name = "usuario_email")
     private Usuario usuario;

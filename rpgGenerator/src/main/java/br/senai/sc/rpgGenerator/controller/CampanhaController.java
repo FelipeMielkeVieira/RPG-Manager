@@ -56,7 +56,7 @@ public class CampanhaController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não válido!");
         }
 
-        return ResponseEntity.status(HttpStatus.OK).body(campanhaService.findByUsuario(usuario.get()));
+        return ResponseEntity.status(HttpStatus.OK).body(campanhaService.findByUsuarioAndArquivada(usuario.get(), false));
     }
 
     @GetMapping("/page")

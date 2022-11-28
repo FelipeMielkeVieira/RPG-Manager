@@ -38,7 +38,7 @@ const CriarCampanha = () => {
         
         CampanhaService.post({
             campanha:
-                { nome, descricao, usuario: { email: emailUser }, sistema: { id: sistema } },
+                { nome, descricao, usuario: { email: emailUser }, sistema: { id: sistema }, arquivada: false },
             logo,
             mapa
         }).then((response) => {

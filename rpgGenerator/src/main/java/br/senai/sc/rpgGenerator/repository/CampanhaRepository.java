@@ -16,5 +16,5 @@ public interface CampanhaRepository extends JpaRepository<Campanha, Long> {
 
     Page<Campanha> findByUsuario(Usuario usuario, Pageable pageable);
 
-    List<Campanha> findByUsuario(Usuario usuario);
+    List<Campanha> findByUsuarioAndArquivada(Usuario usuario, Boolean arquivada);
 }

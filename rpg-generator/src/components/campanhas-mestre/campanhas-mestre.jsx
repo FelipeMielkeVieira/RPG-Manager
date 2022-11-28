@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { Box, Button, Typography } from '@mui/material'
-
-import ItemListModel from '../item-list-model/item-list-model'
+import { Box, Button, Typography, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField, Paper } from '@mui/material'
 
 import CampanhaService from '../../service/campanha'
 
 const CampanhasMestre = () => {
+  const [open, setOpen] = useState(false);
+  const [campanhaSelecionada, setCampanhaSelecionada] = useState(null);
   const [campanhas, setCampanhas] = useState([]);
-  const listCampanhas = [{ nome: 'O Segredo na Ilha', jogadores: 5, data: '24/11/2022' }]
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -23,7 +22,12 @@ const CampanhasMestre = () => {
   }, []);
 
   const handleClickOpen = (campanha) => {
-    console.log(campanha)
+    setOpen(true);
+    setCampanhaSelecionada(campanha)
+  }
+
+  const arquivarCampanha = (campanha) => {
+
   }
 
   return (
@@ -35,16 +39,40 @@ const CampanhasMestre = () => {
 
       <Box>
         {campanhas?.map((campanha, index) => {
-          return <ItemListModel onCampanhaClick={() => handleClickOpen(campanha)} key={index} >
-            <Typography fontSize='22px' color='text.white'>{campanha.nome}</Typography>
-            <Typography fontSize='22px' color='text.white'>{campanha.nome}</Typography>
-            <Typography fontSize='22px' color='text.white'>Jogadores: {campanha.personagem.length}</Typography>
-            <Typography fontSize='22px' color='text.white'>Prox. Sessão: {campanha.proxima_sessao ? campanha.proxima_sessao : " A  definir"}</Typography>
-          </ItemListModel>
+          let imagem = "data:" + campanha.mapa.arquivo.tipo + ";base64," + campanha.mapa.arquivo.dados;
+
+          return (
+            <Paper key={index} onClick={() => handleClickOpen(campanha)} className='grid grid-cols-4 gap-8 items-center p-4 cursor-pointer transition duration-300 hover:opacity-95 hover:transition hover:duration-300 mb-4' sx={{ borderLeft: '10px solid', borderColor: 'secondary.main' }}>
+              <Box className='w-12'>
+                <img src={imagem} alt="Campanha imagem" />
+              </Box>
+              <Typography fontSize='22px' color='text.white'>{campanha.nome}</Typography>
+              <Typography fontSize='22px' color='text.white'>Jogadores: {campanha.personagem.length}</Typography>
+              <Typography fontSize='22px' color='text.white'>Prox. Sessão: {campanha.proxima_sessao ? campanha.proxima_sessao : " A  definir"}</Typography>
+            </Paper>
+          )
+
         })}
       </Box>
 
-    </Box>
+      <Dialog open={open} onClose={() => { setOpen(false); }}>
+        <DialogTitle sx={{ backgroundColor: "background.default" }} color='text.secondary'>{campanhaSelecionada?.nome} #{campanhaSelecionada?.id}</DialogTitle>
+        <DialogContent sx={{ backgroundColor: "background.default" }}>
+          <DialogContentText color="text.primary">
+            Selecione o que irá acontecer com a campanha
+          </DialogContentText>
+          <Box className='w-full mt-4'>
+            <Box component="input" type="date" id='data-nova-sessao'
+              className='w-full p-2 border rounded' />
+          </Box>
+        </DialogContent>
+        <DialogActions sx={{ backgroundColor: "background.default" }}>
+          <Button onClick={() => { setOpen(false); }}>Cancelar</Button>
+          <Button variant='contained' color='tertiary' disableElevation onClick={() => { arquivarCampanha(campanhaSelecionada); setOpen(false); }}>Arquivar</Button>
+          <Button variant='contained' color='secondary' disableElevation onClick={() => { setOpen(false); }}>Adicionar nova sessão</Button>
+        </DialogActions>
+      </Dialog>
+    </Box >
   )
 }
 
