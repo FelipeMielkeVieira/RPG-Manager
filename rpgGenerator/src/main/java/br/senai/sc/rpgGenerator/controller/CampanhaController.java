@@ -6,6 +6,7 @@ import br.senai.sc.rpgGenerator.model.entities.Mapa;
 import br.senai.sc.rpgGenerator.model.entities.Usuario;
 import br.senai.sc.rpgGenerator.model.service.CampanhaService;
 import br.senai.sc.rpgGenerator.model.service.MapaService;
+import br.senai.sc.rpgGenerator.model.service.UsuarioService;
 import br.senai.sc.rpgGenerator.util.CampanhaUtil;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
@@ -31,6 +32,7 @@ import java.util.Optional;
 public class CampanhaController {
     private CampanhaService campanhaService;
     private MapaService mapaService;
+    private UsuarioService usuarioService;
 
     @GetMapping
     public ResponseEntity<List<Campanha>> findAll() {
@@ -44,6 +46,17 @@ public class CampanhaController {
         }
 
         return ResponseEntity.status(HttpStatus.OK).body(campanhaService.findById(id).get());
+    }
+
+    @GetMapping("/usuario/{email}")
+    public ResponseEntity<Object> findByUsuario(@PathVariable(value = "email") String email) {
+        Optional<Usuario> usuario = usuarioService.findById(email);
+
+        if (usuario.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não válido!");
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(campanhaService.findByUsuario(usuario.get()));
     }
 
     @GetMapping("/page")

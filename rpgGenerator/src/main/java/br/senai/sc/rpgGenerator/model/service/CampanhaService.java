@@ -43,4 +43,8 @@ public class CampanhaService {
     public Page<Campanha> findPage(Usuario usuario, Pageable pageable) {
         return campanhaRepository.findByUsuario(usuario, pageable);
     }
+
+    public List<Campanha> findByUsuario(Usuario usuario) {
+        return campanhaRepository.findByUsuario(usuario);
+    }
 }

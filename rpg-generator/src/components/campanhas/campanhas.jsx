@@ -11,10 +11,10 @@ const Campanhas = () => {
     const [openDialogCampanha, setOpenDialogCampanha] = useState(false)
 
     useEffect(() => {
-        CampanhaService.getAll().then((response) => {
-            console.log(response);
-            setCampanhas(response.data)
-        })
+        // CampanhaService.getAll().then((response) => {
+        //     console.log(response);
+        //     setCampanhas(response.data)
+        // })
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);

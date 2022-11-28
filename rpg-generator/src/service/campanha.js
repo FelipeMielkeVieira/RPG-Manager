@@ -7,6 +7,10 @@ class CampanhaService {
         return (await axios.get(map)).data;
     }
 
+    async getByAutor(email) {
+        return (await axios.get(map + "/usuario/" + email)).data;
+    }
+
     async post(dados) {
         const formData = new FormData();
         formData.append("campanha", JSON.stringify(dados.campanha));

@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 
 import { Box, Typography, Divider } from '@mui/material';
 
-import CampanhasMestre from '../components/campanhas-mestre/campanhas-mestre';
-import SistemasMestre from '../components/sistemas-mestre/sistemas-mestre';
+import CampanhasMestre from '../campanhas-mestre/campanhas-mestre';
+import SistemasMestre from '../sistemas-mestre/sistemas-mestre';
 
 const ConteudoMestre = () => {
     const [abaConteudo, setAbaConteudo] = useState("campanhas");
