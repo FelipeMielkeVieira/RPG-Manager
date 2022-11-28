@@ -33,7 +33,7 @@ public class Campanha {
     @JoinColumn(name = "usuario_email")
     private Usuario usuario;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "imagem_id")
     private Imagem imagem;
 
@@ -45,17 +45,20 @@ public class Campanha {
     @JoinColumn(name = "sessao_id")
     private List<Sessao> sessao;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "mapa_id")
-    private List<Mapa> mapas;
+    private Mapa mapa;
 
-//    public void setMapa(MultipartFile[] files) {
-//        try {
-//            for (MultipartFile file : files) {
-//                this.mapas.add(new Mapa(file.getOriginalFilename(), file.getContentType(), file.getBytes()));
-//            }
-//        } catch (Exception exception) {
-//            throw new RuntimeException(exception.getMessage());
-//        }
-//    }
+    @OneToOne
+    @JoinColumn(name = "sistema_id")
+    private Sistema sistema;
+
+    public void setImagem(MultipartFile file) {
+        System.out.println("file: " + file);
+        try {
+            this.imagem = new Imagem(file.getOriginalFilename(), file.getContentType(), file.getBytes());
+        } catch (Exception exception) {
+            throw new RuntimeException(exception.getMessage());
+        }
+    }
 }

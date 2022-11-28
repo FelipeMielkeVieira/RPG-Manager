@@ -19,7 +19,6 @@ public class Mapa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NonNull
     @OneToOne(cascade = CascadeType.ALL)
     private Arquivo arquivo;
 

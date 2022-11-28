@@ -46,6 +46,7 @@ const Mapas = () => {
         console.log("img: ", mapa);
         MapaService.post({ mapa, emailUser }).then((response) => {
             console.log("response: ", response);
+            getMapas();
         })
     }
 
