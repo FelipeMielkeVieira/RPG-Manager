@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Modal, Stack, TextField, Typography } from '@mui/material';
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Modal, Paper, Stack, TextField, Typography } from '@mui/material';
 
 import UploadArquivoCinza from "../../img/uploadArquivoCinza.png"
 import Sidebar from '../../components/sidebar/sidebar'
@@ -58,18 +58,22 @@ const Mapas = () => {
                     <Button onClick={handleClickOpen} sx={{ fontWeight: '600' }} color='tertiary' variant="contained" disableElevation>Adicionar</Button>
                 </Box>
 
-                {mapas?.map((mapa, index) => {
-                    let imagem = "data:" + mapa.arquivo.tipo + ";base64," + mapa.arquivo.dados;
+                <Box className='grid grid-cols-4 gap-x-10 gap-y-4'>
+                    {mapas?.map((mapa, index) => {
+                        let imagem = "data:" + mapa.arquivo.tipo + ";base64," + mapa.arquivo.dados;
 
-                    return (
-                        <ItemListModel key={index} >
-                            <Box className='w-20 h-20'>
-                                <img src={imagem} alt="Imagem" />
-                            </Box>
-                            <Typography fontSize='22px' color='text.white'>{mapa.arquivo.nome}</Typography>
-                        </ItemListModel>
-                    )
-                })}
+                        return (
+                            <Paper key={index} className='flex items-center gap-16 w-full p-4 cursor-pointer transition duration-300 hover:opacity-95 hover:transition hover:duration-300 mb-4' sx={{ borderLeft: '10px solid', borderColor: 'secondary.main' }}>
+                                <Box className='w-20 h-20 flex items-center'>
+                                    <img className="w-full" src={imagem} alt="Imagem" />
+                                </Box>
+                                <Box className="w-full flex justify-center">
+                                    <Typography fontSize='22px' color='text.white'>{mapa.arquivo.nome}</Typography>
+                                </Box>
+                            </Paper>
+                        )
+                    })}
+                </Box>
 
                 <Dialog open={open} onClose={handleClose}>
                     <DialogTitle sx={{ backgroundColor: "background.default" }} color='text.secondary'>Mapa</DialogTitle>
