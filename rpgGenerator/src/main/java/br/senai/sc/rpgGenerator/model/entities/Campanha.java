@@ -51,9 +51,9 @@ public class Campanha {
     @JoinColumn(name = "sessao_id")
     private List<Sessao> sessao;
 
-    @OneToOne
+    @OneToMany
     @JoinColumn(name = "mapa_id")
-    private Mapa mapa;
+    private List<Mapa> mapa;
 
     public void setImagem(MultipartFile file) {
         System.out.println("file: " + file);

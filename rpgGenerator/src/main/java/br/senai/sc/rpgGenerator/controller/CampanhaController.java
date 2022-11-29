@@ -75,15 +75,14 @@ public class CampanhaController {
     @PostMapping
     public ResponseEntity<Object> save(@RequestParam("campanha") String campanhaJson,
                                        @RequestParam("logo") MultipartFile file,
-                                       @RequestParam("mapa") String id) {
+                                       @RequestParam("mapa") List<Mapa> mapas) {
         System.out.println(campanhaJson);
         System.out.println(file);
-        Optional<Mapa> mapa = mapaService.findById(Long.parseLong(id));
 
         CampanhaUtil campanhaUtil = new CampanhaUtil();
         Campanha campanha = campanhaUtil.convertJsonToModel(campanhaJson);
         campanha.setImagem(file);
-        campanha.setMapa(mapa.get());
+        campanha.setMapa(mapas);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(campanhaService.save(campanha));
     }
@@ -92,7 +91,7 @@ public class CampanhaController {
     public ResponseEntity<Object> update(@PathVariable(value = "id") Long id,
                                          @RequestParam("campanha") String campanhaJson,
                                          @RequestParam("logo") String idLogo,
-                                         @RequestParam("mapa") String idMapa) {
+                                         @RequestParam("mapa") List<Mapa> mapas) {
         System.out.println("chegou aq");
         if (!campanhaService.existsById(id)) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Esta campanha não existe.");
@@ -101,16 +100,14 @@ public class CampanhaController {
         System.out.println("id: " + id);
         System.out.println("campanhaJson: " + campanhaJson);
         System.out.println("idlogo: " + idLogo);
-        System.out.println("idmapa: " + idMapa);
 
-        Optional<Mapa> mapa = mapaService.findById(Long.parseLong(idMapa));
         CampanhaUtil campanhaUtil = new CampanhaUtil();
         Campanha campanha = campanhaUtil.convertJsonToFullModel(campanhaJson);
         System.out.println("dpois");
         Optional<Imagem> imagem = imagemService.findById(Long.parseLong(idLogo));
 
         campanha.setImagemExistente(imagem.get());
-        campanha.setMapa(mapa.get());
+        campanha.setMapa(mapas);
         campanha.setId(id);
 
         return ResponseEntity.status(HttpStatus.OK).body(campanhaService.save(campanha));

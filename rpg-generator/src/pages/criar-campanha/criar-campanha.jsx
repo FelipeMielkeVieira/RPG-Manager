@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-import { Box, Button, Divider, Typography } from '@mui/material';
+import { Box, Button, Divider, Grid, Typography } from '@mui/material';
 
 import MapaService from '../../service/mapa.js';
 import SistemaService from '../../service/sistema.js';
@@ -8,6 +8,8 @@ import CampanhaService from '../../service/campanha.js';
 
 import Sidebar from '../../components/sidebar/sidebar'
 import UploadArquivoCinza from "../../img/uploadArquivoCinza.png"
+
+import adicionar from "../../../src/img/botao-adicionar.png";
 
 const CriarCampanha = () => {
     const [aba, setAba] = useState("mestre");
@@ -18,10 +20,10 @@ const CriarCampanha = () => {
 
     const [imagem, setImagem] = useState(UploadArquivoCinza);
     const [mapas, setMapas] = useState([]);
+    const [mapasSalvos, setMapasSalvos] = useState([]);
 
     useEffect(() => {
-        MapaService.getAll().then((response) => {
-            console.log("mapa: ", response.data);
+        MapaService.getByUser(parseInt(localStorage.getItem('userId'))).then((response) => {
             setMapas(response.data);
         })
     }, []);
@@ -29,7 +31,7 @@ const CriarCampanha = () => {
     const criarCampanha = () => {
         const idUser = JSON.parse(localStorage.getItem("userId"));
         const logo = document.getElementById('input-file').files[0];
-        
+
         CampanhaService.post({
             campanha:
                 { nome, descricao, usuario: { id: idUser }, arquivada: false, senha: senha },
@@ -42,6 +44,12 @@ const CriarCampanha = () => {
             setMapa("");
             setImagem(UploadArquivoCinza);
         });
+    }
+
+    const adicionarMapa = () => {
+        if(mapas.length > 0) {
+            mapasSalvos.push(mapas[0]);
+        }
     }
 
     return (
@@ -66,16 +74,16 @@ const CriarCampanha = () => {
                                 <Box value={descricao} onChange={(e) => setDescricao(e.target.value)} component="input" className='w-full h-12 border-2 border-l-4 border-gray-300 rounded p-2 outline-none' sx={{ borderLeftColor: "secondary.main" }} placeholder='Descrição da campanha' />
                             </label>
                             <label>
-                                Mapa
-                                <Box value={mapa} onChange={(e) => { setMapa(e.target.value) }} component="select" className='w-full h-12 border-2 border-l-4 border-gray-300 rounded p-2 outline-none' sx={{ borderLeftColor: "secondary.main" }} >
-                                    {mapas.map((mapa, index) => {
-                                        return <option key={index} value={mapa.id}>{mapa.nome}</option>
-                                    })}
-                                </Box>
-                            </label>
-                            <label>
                                 Senha
                                 <Box value={senha} onChange={(e) => setSenha(e.target.value)} component="input" type='password' className='w-full h-12 border-2 border-l-4 border-gray-300 rounded p-2 outline-none' sx={{ borderLeftColor: "secondary.main" }} placeholder='Senha da campanha' />
+                            </label>
+                            <label>
+                                Mapas:
+                                <Grid container sx={{ marginTop: '10px' }}>
+                                    <Grid key={'adicionar'} item xs={2} sx={{ minWidth: '60px', minHeight: '60px' }} className='flex justify-center items-center'>
+                                        <img onClick={adicionarMapa} className='hover:cursor-pointer' style={{ width: '40px' }} src={adicionar}></img>
+                                    </Grid>
+                                </Grid>
                             </label>
                         </Box>
 

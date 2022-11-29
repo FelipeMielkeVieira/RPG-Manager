@@ -3,6 +3,7 @@ package br.senai.sc.rpgGenerator.controller;
 import br.senai.sc.rpgGenerator.model.entities.Mapa;
 import br.senai.sc.rpgGenerator.model.entities.Usuario;
 import br.senai.sc.rpgGenerator.model.service.MapaService;
+import br.senai.sc.rpgGenerator.model.service.UsuarioService;
 import br.senai.sc.rpgGenerator.util.MapaUtil;
 import br.senai.sc.rpgGenerator.util.UsuarioUtil;
 import lombok.AllArgsConstructor;
@@ -20,20 +21,27 @@ import java.util.List;
 @RequestMapping("rpg_manager/mapa")
 public class MapaController {
     private MapaService mapaService;
+    private UsuarioService usuarioService;
 
     @GetMapping
     public ResponseEntity<List<Mapa>> findAll() {
         return ResponseEntity.status(HttpStatus.OK).body(mapaService.findAll());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<List<Mapa>> findByUser(@PathVariable(value = "id") Long idUsuario) {
+        Usuario usuario = usuarioService.findById(idUsuario);
+
+        return ResponseEntity.status(HttpStatus.OK).body(mapaService.findByUsuario(usuario));
+    }
+
     @PostMapping
-    public ResponseEntity<Object> save(@RequestParam("usuario") String usuarioJson,
+    public ResponseEntity<Object> save(@RequestParam("usuario") Long idUsuario,
                                        @RequestParam("nome") String nome,
                                        @RequestParam("mapa") MultipartFile file) {
-        UsuarioUtil usuarioUtil = new UsuarioUtil();
-        Usuario usuario = usuarioUtil.convertJsonToModel(usuarioJson);
-
         Mapa mapa = new Mapa();
+        Usuario usuario = usuarioService.findById(idUsuario);
+        System.out.println(usuario.toString());
 
         mapa.setNome(nome);
         mapa.setUsuario(usuario);

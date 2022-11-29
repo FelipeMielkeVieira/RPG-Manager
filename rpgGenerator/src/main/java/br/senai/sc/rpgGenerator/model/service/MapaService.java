@@ -1,6 +1,7 @@
 package br.senai.sc.rpgGenerator.model.service;
 
 import br.senai.sc.rpgGenerator.model.entities.Mapa;
+import br.senai.sc.rpgGenerator.model.entities.Usuario;
 import br.senai.sc.rpgGenerator.repository.MapaRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -31,5 +32,9 @@ public class MapaService {
 
     public void deleteById(Long aLong) {
         mapaRepository.deleteById(aLong);
+    }
+
+    public List<Mapa> findByUsuario(Usuario usuario) {
+        return mapaRepository.findByUsuario(usuario);
     }
 }
