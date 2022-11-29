@@ -11,6 +11,10 @@ class CampanhaService {
         return (await axios.get(map + "/usuario/" + email)).data;
     }
 
+    async getAllArquivadas(id) {
+        return (await axios.get(map + "/usuario/" + id + "/arquivadas")).data;
+    }
+
     async post(dados) {
         const formData = new FormData();
         formData.append("campanha", JSON.stringify(dados.campanha));

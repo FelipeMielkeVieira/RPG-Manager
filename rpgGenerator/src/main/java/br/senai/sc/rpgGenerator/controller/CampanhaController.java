@@ -56,6 +56,12 @@ public class CampanhaController {
         return ResponseEntity.status(HttpStatus.OK).body(campanhaService.findByUsuarioAndArquivada(usuario, false));
     }
 
+    @GetMapping("/usuario/{id}/arquivadas")
+    public ResponseEntity<Object> findByUsuarioArquivadas(@PathVariable(value = "id") Long id) {
+        Usuario usuario = usuarioService.findById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(campanhaService.findByUsuarioAndArquivada(usuario, true));
+    }
+
     @GetMapping("/page")
     public ResponseEntity<Page<Campanha>> findPage(@PageableDefault(sort = "id", direction = Sort.Direction.ASC) Pageable pageable,
                                                    @RequestParam Usuario usuario, @RequestParam(required = false) String nome) {

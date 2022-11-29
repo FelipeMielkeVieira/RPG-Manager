@@ -18,7 +18,7 @@ const ListaSidebar = (props) => {
 
     return (
         <List>
-            <ListItem onClick={() => navigate("/campanhas-arquivas")} disablePadding sx={{ display: 'block', paddingTop: '1rem' }}>
+            <ListItem onClick={() => navigate("/campanhas-arquivadas")} disablePadding sx={{ display: 'block', paddingTop: '1rem' }}>
                 <ListItemButton sx={{
                     minHeight: 48,
                     justifyContent: open ? 'initial' : 'center',
