@@ -74,25 +74,6 @@ const ListaSidebar = (props) => {
                     <ListItemText disableTypography primary="Mapas" sx={{ opacity: open ? 1 : 0, color: "text.white" }} />
                 </ListItemButton>
             </ListItem>
-
-            <ListItem onClick={() => navigate("/sistemas")} disablePadding sx={{ display: 'block' }}>
-                <ListItemButton sx={{
-                    minHeight: 48,
-                    justifyContent: open ? 'initial' : 'center',
-                    px: 2.5,
-                }}>
-                    <ListItemIcon
-                        sx={{
-                            minWidth: 0,
-                            mr: open ? 3 : 'auto',
-                            justifyContent: 'center',
-                        }}
-                    >
-                        <img className='h-10' src={Sistemas} />
-                    </ListItemIcon>
-                    <ListItemText primary="Sistemas" sx={{ opacity: open ? 1 : 0, color: "text.white" }} />
-                </ListItemButton>
-            </ListItem>
         </List>
     )
 }

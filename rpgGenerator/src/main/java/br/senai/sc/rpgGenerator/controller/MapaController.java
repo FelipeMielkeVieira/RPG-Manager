@@ -27,7 +27,9 @@ public class MapaController {
     }
 
     @PostMapping
-    public ResponseEntity<Object> save(@RequestParam("usuario") String usuarioJson, @RequestParam("mapa") MultipartFile file) {
+    public ResponseEntity<Object> save(@RequestParam("usuario") String usuarioJson,
+                                       @RequestParam("nome") String nome,
+                                       @RequestParam("mapa") MultipartFile file) {
         UsuarioUtil usuarioUtil = new UsuarioUtil();
         Usuario usuario = usuarioUtil.convertJsonToModel(usuarioJson);
 

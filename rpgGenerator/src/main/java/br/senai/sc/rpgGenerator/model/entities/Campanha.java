@@ -52,10 +52,6 @@ public class Campanha {
     @JoinColumn(name = "mapa_id")
     private Mapa mapa;
 
-    @OneToOne
-    @JoinColumn(name = "sistema_id")
-    private Sistema sistema;
-
     public void setImagem(MultipartFile file) {
         System.out.println("file: " + file);
         try {

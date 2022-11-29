@@ -15,7 +15,6 @@ import PaginaDados from './pages/paginaDados/paginaDados';
 import Home from './pages/home/home';
 import CriarCampanha from './pages/criar-campanha/criar-campanha';
 import Mapas from './pages/mapas/mapas';
-import Sistemas from './pages/sistemas/sistemas';
 
 function App() {
 
@@ -30,7 +29,6 @@ function App() {
           <Route path='/dados' element={<PaginaDados></PaginaDados>}></Route>
           <Route path='/criar-campanha' element={<CriarCampanha></CriarCampanha>}></Route>
           <Route path='/mapas' element={<Mapas></Mapas>}></Route>
-          <Route path='/sistemas' element={<Sistemas></Sistemas>}></Route>
         </Routes>
       </Router>
     </ToggleColorMode>

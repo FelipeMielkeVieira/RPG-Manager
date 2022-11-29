@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import { Box, Typography, Divider } from '@mui/material';
 
 import CampanhasMestre from '../campanhas-mestre/campanhas-mestre';
-import SistemasMestre from '../sistemas-mestre/sistemas-mestre';
 
 const ConteudoMestre = () => {
     const [abaConteudo, setAbaConteudo] = useState("campanhas");
@@ -14,20 +13,15 @@ const ConteudoMestre = () => {
                 ?
                 <Box className='flex gap-12'>
                     <Typography className='cursor-pointer' variant='h5' color='text.secondary'>Campanhas</Typography>
-                    <Typography className='cursor-pointer' variant='h5' onClick={() => setAbaConteudo("personagens")} color='text.black'>Sistemas</Typography>
                 </Box>
                 :
                 <Box className='flex gap-12'>
                     <Typography className='cursor-pointer' variant='h5' onClick={() => setAbaConteudo("campanhas")} color='text.black'>Campanhas</Typography>
-                    <Typography className='cursor-pointer' variant='h5' color='text.secondary'>Sistemas</Typography>
                 </Box>
             }
             <Divider sx={{ borderWidth: '1px' }} />
 
-            {abaConteudo == "campanhas"
-                ? <CampanhasMestre />
-                : <SistemasMestre />
-            }
+            {abaConteudo == "campanhas" && <CampanhasMestre />}
         </Box>
     )
 }

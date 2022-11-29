@@ -19,12 +19,16 @@ public class Mapa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
+    private String nome;
+
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "arquivo_id", nullable = false)
     private Arquivo arquivo;
 
     @NonNull
     @ManyToOne
-    @JoinColumn(name = "usuario_email")
+    @JoinColumn(name = "usuario_email", nullable = false)
     private Usuario usuario;
 
     public void setArquivo(MultipartFile file) {
