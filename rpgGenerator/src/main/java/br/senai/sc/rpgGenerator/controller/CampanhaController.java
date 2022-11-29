@@ -50,15 +50,10 @@ public class CampanhaController {
         return ResponseEntity.status(HttpStatus.OK).body(campanhaService.findById(id).get());
     }
 
-    @GetMapping("/usuario/{email}")
-    public ResponseEntity<Object> findByUsuario(@PathVariable(value = "email") String email) {
-        Optional<Usuario> usuario = usuarioService.findById(email);
-
-        if (usuario.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não válido!");
-        }
-
-        return ResponseEntity.status(HttpStatus.OK).body(campanhaService.findByUsuarioAndArquivada(usuario.get(), false));
+    @GetMapping("/usuario/{id}")
+    public ResponseEntity<Object> findByUsuario(@PathVariable(value = "id") Long id) {
+        Usuario usuario = usuarioService.findById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(campanhaService.findByUsuarioAndArquivada(usuario, false));
     }
 
     @GetMapping("/page")

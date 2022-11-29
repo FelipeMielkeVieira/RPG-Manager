@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate, useLocation } from "react-router-dom"
 
 import { Box, Typography, Menu, MenuItem } from '@mui/material'
@@ -9,6 +9,8 @@ import Logo from "../../img/d20Claro.png";
 import Bell from "../../img/sino.png";
 import User from "../../img/user.png";
 
+import UsuarioService from '../../service/usuario';
+
 const Header = (props) => {
     const [user, setUser] = useState({ nome: "Nome", sobrenome: "Sobrenome" })
     const [userModalVisibility, setUserModalVisibility] = useState(true);
@@ -16,6 +18,16 @@ const Header = (props) => {
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
+
+    useEffect(() => {
+        buscarUsuario();
+    }, []);
+
+    const buscarUsuario = async () => {
+        const dado = (await UsuarioService.getById(parseInt(localStorage.getItem('userId')))).data;
+        setUser(dado);
+    }
+
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -59,7 +71,7 @@ const Header = (props) => {
                             }}
                         >
                             <Box bgcolor='background.default' className='p-2'>
-                                <Typography fontSize='18px' fontWeight='600' >{user.nome} {user.sobrenome}</Typography>
+                                <Typography fontSize='18px' fontWeight='600' >{user.nome}</Typography>
                                 <MenuItem sx={{ padding: 0, paddingY: '6px', paddingX: '4px', display: 'flex', gap: '8px' }} onClick={() => { handleClose(); navigate("/perfil") }}> <BorderColorOutlinedIcon /> Editar Perfil</MenuItem>
                                 <Box className='flex align-middle gap-1 justify-end'>
                                     <Box onClick={logout} className='cursor-pointer'>
