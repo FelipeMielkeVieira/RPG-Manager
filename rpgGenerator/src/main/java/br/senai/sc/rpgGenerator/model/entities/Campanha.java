@@ -60,4 +60,8 @@ public class Campanha {
             throw new RuntimeException(exception.getMessage());
         }
     }
+
+    public void setImagemExistente(Imagem imagem) {
+        this.imagem = imagem;
+    }
 }

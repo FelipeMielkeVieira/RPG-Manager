@@ -18,6 +18,24 @@ class CampanhaService {
         formData.append("mapa", dados.mapa);
         return (await axios.post(map, formData, { headers: { "Content-Type": "multipart/form-data" } })).data;
     }
+
+    async put(campanha) {
+        const formData = new FormData();
+
+        formData.append("campanha", JSON.stringify({
+            nome: campanha.nome,
+            proxima_sessao: campanha.proxima_sessao,
+            descricao: campanha.descricao,
+            arquivada: campanha.arquivada,
+            usuario: campanha.usuario,
+            personagem: campanha.personagem,
+            sessao: campanha.sessao
+        }));
+        formData.append("logo", campanha.imagem.id);
+        formData.append("mapa", campanha.mapa.id);
+
+        return (await axios.put(map + "/" + campanha.id, formData, { headers: { "Content-Type": "multipart/form-data" } })).data;
+    }
 }
 
 export default new CampanhaService();

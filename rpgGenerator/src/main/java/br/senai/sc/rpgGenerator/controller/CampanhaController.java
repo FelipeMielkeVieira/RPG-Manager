@@ -2,9 +2,11 @@ package br.senai.sc.rpgGenerator.controller;
 
 import br.senai.sc.rpgGenerator.dto.CampanhaDTO;
 import br.senai.sc.rpgGenerator.model.entities.Campanha;
+import br.senai.sc.rpgGenerator.model.entities.Imagem;
 import br.senai.sc.rpgGenerator.model.entities.Mapa;
 import br.senai.sc.rpgGenerator.model.entities.Usuario;
 import br.senai.sc.rpgGenerator.model.service.CampanhaService;
+import br.senai.sc.rpgGenerator.model.service.ImagemService;
 import br.senai.sc.rpgGenerator.model.service.MapaService;
 import br.senai.sc.rpgGenerator.model.service.UsuarioService;
 import br.senai.sc.rpgGenerator.util.CampanhaUtil;
@@ -21,7 +23,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
-import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,6 +34,7 @@ public class CampanhaController {
     private CampanhaService campanhaService;
     private MapaService mapaService;
     private UsuarioService usuarioService;
+    private ImagemService imagemService;
 
     @GetMapping
     public ResponseEntity<List<Campanha>> findAll() {
@@ -81,14 +83,30 @@ public class CampanhaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> update(@PathVariable(value = "id") Long id, @RequestBody @Valid CampanhaDTO campanhaDTO) {
+    public ResponseEntity<Object> update(@PathVariable(value = "id") Long id,
+                                         @RequestParam("campanha") String campanhaJson,
+                                         @RequestParam("logo") String idLogo,
+                                         @RequestParam("mapa") String idMapa) {
+        System.out.println("chegou aq");
         if (!campanhaService.existsById(id)) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Esta campanha não existe.");
         }
 
-        Campanha campanha = new Campanha();
-        BeanUtils.copyProperties(campanhaDTO, campanha);
+        System.out.println("id: " + id);
+        System.out.println("campanhaJson: " + campanhaJson);
+        System.out.println("idlogo: " + idLogo);
+        System.out.println("idmapa: " + idMapa);
+
+        Optional<Mapa> mapa = mapaService.findById(Long.parseLong(idMapa));
+        CampanhaUtil campanhaUtil = new CampanhaUtil();
+        Campanha campanha = campanhaUtil.convertJsonToFullModel(campanhaJson);
+        System.out.println("dpois");
+        Optional<Imagem> imagem = imagemService.findById(Long.parseLong(idLogo));
+
+        campanha.setImagemExistente(imagem.get());
+        campanha.setMapa(mapa.get());
         campanha.setId(id);
+
         return ResponseEntity.status(HttpStatus.OK).body(campanhaService.save(campanha));
     }
 

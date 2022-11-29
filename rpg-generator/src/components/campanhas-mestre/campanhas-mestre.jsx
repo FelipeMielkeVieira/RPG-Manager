@@ -13,13 +13,16 @@ const CampanhasMestre = () => {
 
   useEffect(() => {
     console.log()
+    getCampanhas();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const getCampanhas = () => {
     CampanhaService.getByAutor(JSON.parse(localStorage.getItem("email-user"))).then((response) => {
       console.log(response);
       setCampanhas(response)
     })
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }
 
   const handleClickOpen = (campanha) => {
     setOpen(true);
@@ -27,7 +30,12 @@ const CampanhasMestre = () => {
   }
 
   const arquivarCampanha = (campanha) => {
-
+    campanha.arquivada = true;
+    CampanhaService.put(campanha).then((response) => {
+      console.log(response);
+      setCampanhas(response);
+      getCampanhas();
+    })
   }
 
   return (
@@ -38,21 +46,25 @@ const CampanhasMestre = () => {
       </Box>
 
       <Box>
-        {campanhas?.map((campanha, index) => {
-          let imagem = "data:" + campanha.mapa.arquivo.tipo + ";base64," + campanha.mapa.arquivo.dados;
+        {campanhas.length > 0
+          ?
+          (campanhas?.map((campanha, index) => {
+            let imagem = "data:" + campanha.mapa.arquivo.tipo + ";base64," + campanha.mapa.arquivo.dados;
 
-          return (
-            <Paper key={index} onClick={() => handleClickOpen(campanha)} className='grid grid-cols-4 gap-8 items-center p-4 cursor-pointer transition duration-300 hover:opacity-95 hover:transition hover:duration-300 mb-4' sx={{ borderLeft: '10px solid', borderColor: 'secondary.main' }}>
-              <Box className='w-12'>
-                <img src={imagem} alt="Campanha imagem" />
-              </Box>
-              <Typography fontSize='22px' color='text.white'>{campanha.nome}</Typography>
-              <Typography fontSize='22px' color='text.white'>Jogadores: {campanha.personagem.length}</Typography>
-              <Typography fontSize='22px' color='text.white'>Prox. Sessão: {campanha.proxima_sessao ? campanha.proxima_sessao : " A  definir"}</Typography>
-            </Paper>
-          )
+            return (
+              <Paper key={index} onClick={() => handleClickOpen(campanha)} className='grid grid-cols-4 gap-8 items-center p-4 cursor-pointer transition duration-300 hover:opacity-95 hover:transition hover:duration-300 mb-4' sx={{ borderLeft: '10px solid', borderColor: 'secondary.main' }}>
+                <Box className='w-12'>
+                  <img src={imagem} alt="Campanha imagem" />
+                </Box>
+                <Typography fontSize='22px' color='text.white'>{campanha.nome}</Typography>
+                <Typography fontSize='22px' color='text.white'>Jogadores: {campanha.personagem.length}</Typography>
+                <Typography fontSize='22px' color='text.white'>Prox. Sessão: {campanha.proxima_sessao ? campanha.proxima_sessao : " A  definir"}</Typography>
+              </Paper>
+            )
 
-        })}
+          }))
+          :
+          null}
       </Box>
 
       <Dialog open={open} onClose={() => { setOpen(false); }}>
