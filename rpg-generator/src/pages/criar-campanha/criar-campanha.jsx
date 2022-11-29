@@ -27,12 +27,12 @@ const CriarCampanha = () => {
     }, []);
 
     const criarCampanha = () => {
-        const emailUser = JSON.parse(localStorage.getItem("email-user"));
+        const idUser = JSON.parse(localStorage.getItem("userId"));
         const logo = document.getElementById('input-file').files[0];
         
         CampanhaService.post({
             campanha:
-                { nome, descricao, usuario: { email: emailUser }, arquivada: false, senha: senha },
+                { nome, descricao, usuario: { id: idUser }, arquivada: false, senha: senha },
             logo,
             mapa
         }).then((response) => {

@@ -19,7 +19,7 @@ const CampanhasMestre = () => {
   }, []);
 
   const getCampanhas = () => {
-    CampanhaService.getByAutor(JSON.parse(localStorage.getItem("email-user"))).then((response) => {
+    CampanhaService.getByAutor(JSON.parse(localStorage.getItem("userId"))).then((response) => {
       console.log(response);
       setCampanhas(response)
     })
@@ -66,7 +66,7 @@ const CampanhasMestre = () => {
             return (
               <Paper key={index} onClick={() => handleClickOpen(campanha)} className='grid grid-cols-4 gap-6 items-center p-4 cursor-pointer transition duration-300 hover:opacity-95 hover:transition hover:duration-300 mb-4' sx={{ borderLeft: '10px solid', borderColor: 'secondary.main' }}>
                 <Box className='flex items-center w-12 h-12'>
-                  <img classNmae="w-full h-full" src={"data:" + campanha.mapa.arquivo.tipo + ";base64," + campanha.mapa.arquivo.dados} alt="Campanha imagem" />
+                  <img className="w-full h-full" src={"data:" + campanha.mapa.arquivo.tipo + ";base64," + campanha.mapa.arquivo.dados} alt="Campanha imagem" />
                 </Box>
                 <Typography fontSize='22px' color='text.white'>{campanha.nome}</Typography>
                 <Typography fontSize='22px' color='text.white'>Jogadores: {campanha.personagem.length}</Typography>
