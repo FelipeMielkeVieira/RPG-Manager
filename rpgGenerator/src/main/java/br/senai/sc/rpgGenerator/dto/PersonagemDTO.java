@@ -13,7 +13,5 @@ public class PersonagemDTO {
     private String nome;
     private Integer mana;
     private Integer vida;
-    private Integer expAtual;
-    private Integer expProximo;
     private Usuario usuario;
 }

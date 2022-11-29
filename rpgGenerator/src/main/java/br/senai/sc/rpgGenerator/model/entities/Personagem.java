@@ -32,12 +32,6 @@ public class Personagem {
     @Column(nullable = false)
     private Integer nivel;
 
-    @Column(nullable = false)
-    private Integer expAtual;
-
-    @Column(nullable = false)
-    private Integer expProximo;
-
     @OneToMany
     @JoinColumn(name = "personagem_id")
     private List<Arquivo> arquivos;
