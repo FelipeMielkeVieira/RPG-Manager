@@ -23,12 +23,8 @@ public class UsuarioService {
         return usuarioRepository.save(entity);
     }
 
-    public Optional<Usuario> findById(String email) {
-        return usuarioRepository.findById(email);
-    }
-
-    public boolean existsById(String email) {
-        return usuarioRepository.existsById(email);
+    public Usuario findById(Long id) {
+        return usuarioRepository.findById(id);
     }
 
     public void deleteById(String email) {

@@ -28,13 +28,9 @@ public class UsuarioController {
         return ResponseEntity.status(HttpStatus.OK).body(usuarioService.findAll());
     }
 
-    @GetMapping("/{email}")
-    public ResponseEntity<Object> findById(@PathVariable(value = "email") String email){
-        if (!usuarioService.existsById(email)) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Não foi possível encontrar o usuário!");
-        }
-
-        return ResponseEntity.status(HttpStatus.OK).body(usuarioService.findById(email).get());
+    @GetMapping("/{id}")
+    public ResponseEntity<Object> findById(@PathVariable(value = "id") Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(usuarioService.findById(id));
     }
 
     @PostMapping
@@ -59,24 +55,17 @@ public class UsuarioController {
         return ResponseEntity.status(HttpStatus.OK).body(usuario.get());
     }
 
-    @PutMapping("/{email}")
-    public ResponseEntity<Object> update(@PathVariable(value = "email") String email, @RequestBody @Valid UsuarioDTO usuarioDTO){
-        if (!usuarioService.existsById(email)) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Este usuário não existe.");
-        }
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> update(@PathVariable(value = "id") Long id, @RequestBody @Valid UsuarioDTO usuarioDTO){
         Usuario usuario = new Usuario();
         BeanUtils.copyProperties(usuarioDTO, usuario);
-        usuario.setEmail(email);
+        usuario.setId(id);
         return ResponseEntity.status(HttpStatus.OK).body(usuarioService.save(usuario));
     }
 
     @Transactional
     @DeleteMapping("/{email}")
     public ResponseEntity<Object> deleteById(@PathVariable(value = "email") String email){
-        if(!usuarioService.existsById(email)){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Não foi possível encontrar o usuário!");
-        }
-
         usuarioService.deleteById(email);
         return ResponseEntity.status(HttpStatus.OK).body("Usuário deletado com sucesso!");
     }

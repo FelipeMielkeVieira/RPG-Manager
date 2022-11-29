@@ -42,7 +42,7 @@ const Login = () => {
             const data = await UsuarioService.login(dados.email, dados.senha);
             // localStorage.setItem("token", JSON.stringify(data.data));
             console.log(data.data);
-            localStorage.setItem("email-user", JSON.stringify(data.data.email));
+            localStorage.setItem("userId", JSON.stringify(data.data.id));
             navigate("/home");
         } catch (error) {
             setAlertaInvalido(true);

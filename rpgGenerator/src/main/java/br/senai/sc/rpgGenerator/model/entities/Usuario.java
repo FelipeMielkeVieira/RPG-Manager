@@ -20,8 +20,13 @@ import java.util.List;
 @EqualsAndHashCode
 //public class Usuario implements UserDetails {
 public class Usuario {
+
     @Id
-    @Column(length = 100)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false, unique = true)
+    private Long id;
+
+    @Column(nullable = false, length = 100)
     private String email;
 
     @Column(nullable = false, length = 100)
