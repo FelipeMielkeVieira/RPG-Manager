@@ -10,7 +10,6 @@ import lombok.ToString;
 @Setter
 @ToString
 public class MapaDTO {
-    private String nome;
     private Arquivo arquivo;
     private Usuario usuario;
 }

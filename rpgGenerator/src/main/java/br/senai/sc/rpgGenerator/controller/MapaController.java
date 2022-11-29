@@ -35,6 +35,7 @@ public class MapaController {
 
         Mapa mapa = new Mapa();
 
+        mapa.setNome(nome);
         mapa.setUsuario(usuario);
         mapa.setArquivo(file);
 

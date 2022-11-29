@@ -4,11 +4,11 @@ import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, D
 
 import UploadArquivoCinza from "../../img/uploadArquivoCinza.png"
 import Sidebar from '../../components/sidebar/sidebar'
-import ItemListModel from '../../components/item-list-model/item-list-model';
 
 import MapaService from "../../service/mapa";
 
 const Mapas = () => {
+    const [nomeMapa, setNomeMapa] = useState("");
     const [aba, setAba] = useState("mestre");
     const [open, setOpen] = useState(false);
     const [img, setImg] = useState(UploadArquivoCinza);
@@ -44,7 +44,7 @@ const Mapas = () => {
         console.log(mapa);
         const emailUser = JSON.parse(localStorage.getItem("email-user"));
         console.log("img: ", mapa);
-        MapaService.post({ mapa, emailUser }).then((response) => {
+        MapaService.post({ mapa, emailUser, nomeMapa }).then((response) => {
             console.log("response: ", response);
             getMapas();
         })
@@ -68,7 +68,7 @@ const Mapas = () => {
                                     <img className="w-full" src={imagem} alt="Imagem" />
                                 </Box>
                                 <Box className="w-full flex justify-center">
-                                    <Typography fontSize='22px' color='text.white'>{mapa.arquivo.nome}</Typography>
+                                    <Typography fontSize='22px' color='text.white'>{mapa.nome}</Typography>
                                 </Box>
                             </Paper>
                         )
@@ -84,6 +84,7 @@ const Mapas = () => {
                                 setImg(URL.createObjectURL(document.getElementById('mapaInput').files[0]))
                             }} type="file" id="mapaInput" hidden />
                         </Box>
+                        <TextField value={nomeMapa} onChange={(e) => setNomeMapa(e.target.value)} sx={{ backgroundColor: "background.default", marginTop: "1rem" }} className='mt-8' fullWidth label="Nome do mapa" variant="standard" />
                     </DialogContent>
                     <DialogActions sx={{ backgroundColor: "background.default" }}>
                         <Button onClick={handleClose}>Cancelar</Button>
