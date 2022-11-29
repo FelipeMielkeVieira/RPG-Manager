@@ -14,21 +14,14 @@ const CriarCampanha = () => {
     const [nome, setNome] = useState("");
     const [descricao, setDescricao] = useState("");
     const [mapa, setMapa] = useState("");
-    const [sistema, setSistema] = useState("");
 
     const [imagem, setImagem] = useState(UploadArquivoCinza);
     const [mapas, setMapas] = useState([]);
-    const [sistemas, setSistemas] = useState([]);
 
     useEffect(() => {
         MapaService.getAll().then((response) => {
             console.log("mapa: ", response.data);
             setMapas(response.data);
-        })
-
-        SistemaService.getAll().then((response) => {
-            console.log("sistema: ", response);
-            setSistemas(response);
         })
     }, []);
 
@@ -38,7 +31,7 @@ const CriarCampanha = () => {
         
         CampanhaService.post({
             campanha:
-                { nome, descricao, usuario: { email: emailUser }, sistema: { id: sistema }, arquivada: false },
+                { nome, descricao, usuario: { email: emailUser }, arquivada: false },
             logo,
             mapa
         }).then((response) => {
@@ -46,7 +39,6 @@ const CriarCampanha = () => {
             setNome("");
             setDescricao("");
             setMapa("");
-            setSistema("");
             setImagem(UploadArquivoCinza);
         });
     }
@@ -76,15 +68,7 @@ const CriarCampanha = () => {
                                 Mapa
                                 <Box value={mapa} onChange={(e) => { setMapa(e.target.value) }} component="select" className='w-full h-12 border-2 border-l-4 border-gray-300 rounded p-2 outline-none' sx={{ borderLeftColor: "secondary.main" }} >
                                     {mapas.map((mapa, index) => {
-                                        return <option key={index} value={mapa.id}>{mapa.arquivo.nome}</option>
-                                    })}
-                                </Box>
-                            </label>
-                            <label>
-                                Sistema utlizado
-                                <Box value={sistema} onChange={(e) => { setSistema(e.target.value) }} component="select" className='w-full h-12 border-2 border-l-4 border-gray-300 rounded p-2 outline-none' sx={{ borderLeftColor: "secondary.main" }} >
-                                    {sistemas.map((sistema, index) => {
-                                        return <option key={index} value={sistema.id}>{sistema.nome}</option>
+                                        return <option key={index} value={mapa.id}>{mapa.nome}</option>
                                     })}
                                 </Box>
                             </label>
