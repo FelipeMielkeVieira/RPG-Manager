@@ -7,6 +7,8 @@ import CampanhaService from '../../service/campanha'
 
 const Campanhas = () => {
     const [campanhas, setCampanhas] = useState([]);
+    const [nome, setNome] = useState("");
+    const [senha, setSenha] = useState("");
     const listCampanhas = [{ nome: 'O Segredo na Ilha', criador: 'Edson Grucker', data: '24/11/2022' }]
     const [openDialogCampanha, setOpenDialogCampanha] = useState(false)
 
@@ -27,6 +29,10 @@ const Campanhas = () => {
         setOpenDialogCampanha(false);
     };
 
+    const entrarEmCampanha = () => {
+        
+    }
+
     return (
         <Box className='mt-6'>
             <Box className='flex justify-between mb-6'>
@@ -40,15 +46,22 @@ const Campanhas = () => {
 
             <Dialog open={openDialogCampanha} onClose={handleClose}>
                 <Box bgcolor="white">
-                    <DialogTitle color='secondary'>Subscribe</DialogTitle>
+                    <DialogTitle color='secondary'>Entrar em Campanha</DialogTitle>
                     <DialogContent>
                         <Box>
-                            <Box component='input' />
+                            <label>
+                                Nome da Campanha
+                                <Box value={nome} onChange={(e) => setNome(e.target.value)} component="input" className='w-full h-12 border-2 border-l-4 border-gray-300 rounded p-2 outline-none' sx={{ borderLeftColor: "secondary.main" }} />
+                            </label>
+                            <label>
+                                Senha
+                                <Box value={senha} onChange={(e) => setSenha(e.target.value)} component="input" type="password" className='w-full h-12 border-2 border-l-4 border-gray-300 rounded p-2 outline-none' sx={{ borderLeftColor: "secondary.main" }} />
+                            </label>
                         </Box>
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={handleClose}>Cancel</Button>
-                        <Button onClick={handleClose}>Subscribe</Button>
+                        <Button onClick={handleClose}>Cancelar</Button>
+                        <Button onClick={() => { entrarEmCampanha(); handleClose(); }}>Entrar</Button>
                     </DialogActions>
                 </Box>
             </Dialog>
