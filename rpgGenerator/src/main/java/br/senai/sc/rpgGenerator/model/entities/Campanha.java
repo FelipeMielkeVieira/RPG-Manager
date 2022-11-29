@@ -36,7 +36,7 @@ public class Campanha {
     private String senha;
 
     @ManyToOne
-    @JoinColumn(name = "usuario_email")
+    @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
     @OneToOne(cascade = CascadeType.ALL)

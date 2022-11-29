@@ -43,9 +43,9 @@ const Mapas = () => {
     const saveMapa = () => {
         const mapa = document.getElementById('mapaInput').files[0];
         console.log(mapa);
-        const emailUser = JSON.parse(localStorage.getItem("email-user"));
+        const id = JSON.parse(localStorage.getItem("userId"));
         console.log("img: ", mapa);
-        MapaService.post({ mapa, emailUser, nomeMapa }).then((response) => {
+        MapaService.post({ mapa, id, nomeMapa }).then((response) => {
             console.log("response: ", response);
             getMapas();
         })

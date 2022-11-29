@@ -6,7 +6,6 @@ import BorderColorOutlinedIcon from '@mui/icons-material/BorderColorOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 
 import Logo from "../../img/d20Claro.png";
-import Bell from "../../img/sino.png";
 import User from "../../img/user.png";
 
 import UsuarioService from '../../service/usuario';
@@ -57,7 +56,6 @@ const Header = (props) => {
                 }
             </Box>
             <Box className='flex items-center gap-4'>
-                <img src={Bell} className="h-3/4 cursor-pointer" />
                 <img src={User} onClick={handleClick} className="h-3/4 cursor-pointer" />
                 {userModalVisibility &&
                     <Box>
