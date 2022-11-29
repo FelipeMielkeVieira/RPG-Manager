@@ -29,7 +29,8 @@ class CampanhaService {
             arquivada: campanha.arquivada,
             usuario: campanha.usuario,
             personagem: campanha.personagem,
-            sessao: campanha.sessao
+            sessao: campanha.sessao,
+            senha: campanha.senha
         }));
         formData.append("logo", campanha.imagem.id);
         formData.append("mapa", campanha.mapa.id);

@@ -32,6 +32,9 @@ public class Campanha {
     @Column(nullable = false)
     private Boolean arquivada;
 
+    @Column(nullable = false)
+    private String senha;
+
     @ManyToOne
     @JoinColumn(name = "usuario_email")
     private Usuario usuario;

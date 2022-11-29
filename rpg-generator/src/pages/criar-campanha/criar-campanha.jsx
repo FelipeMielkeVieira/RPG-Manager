@@ -14,6 +14,7 @@ const CriarCampanha = () => {
     const [nome, setNome] = useState("");
     const [descricao, setDescricao] = useState("");
     const [mapa, setMapa] = useState("");
+    const [senha, setSenha] = useState("");
 
     const [imagem, setImagem] = useState(UploadArquivoCinza);
     const [mapas, setMapas] = useState([]);
@@ -31,7 +32,7 @@ const CriarCampanha = () => {
         
         CampanhaService.post({
             campanha:
-                { nome, descricao, usuario: { email: emailUser }, arquivada: false },
+                { nome, descricao, usuario: { email: emailUser }, arquivada: false, senha: senha },
             logo,
             mapa
         }).then((response) => {
@@ -71,6 +72,10 @@ const CriarCampanha = () => {
                                         return <option key={index} value={mapa.id}>{mapa.nome}</option>
                                     })}
                                 </Box>
+                            </label>
+                            <label>
+                                Senha
+                                <Box value={senha} onChange={(e) => setSenha(e.target.value)} component="input" type='password' className='w-full h-12 border-2 border-l-4 border-gray-300 rounded p-2 outline-none' sx={{ borderLeftColor: "secondary.main" }} placeholder='Senha da campanha' />
                             </label>
                         </Box>
 

@@ -32,6 +32,7 @@ const Mapas = () => {
 
     const handleClose = () => {
         setImg(UploadArquivoCinza);
+        setNomeMapa("");
         setOpen(false);
     };
 
@@ -54,7 +55,7 @@ const Mapas = () => {
         <Sidebar aba={aba} setAba={setAba}>
             <Box p='2rem 3rem'>
                 <Box className='flex justify-between mb-6'>
-                    <Box className='px-2 py-1 w-1/3 border outline-none' component='input' placeholder="Buscar campanha" />
+                    <Box className='px-2 py-1 w-1/3 border outline-none' component='input' placeholder="Buscar mapa" />
                     <Button onClick={handleClickOpen} sx={{ fontWeight: '600' }} color='tertiary' variant="contained" disableElevation>Adicionar</Button>
                 </Box>
 
